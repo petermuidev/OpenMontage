@@ -178,7 +178,19 @@ GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
 # More video providers:
 HEYGEN_API_KEY=your-key        # HeyGen — VEO, Sora, Runway, Kling via single gateway
 RUNWAY_API_KEY=your-key        # Runway Gen-4 direct
+VIDEO_GEN_PREFERRED_PROVIDER=grok  # Prefer Grok when available; explicit requests still win
 ```
+
+`VIDEO_GEN_PREFERRED_PROVIDER` is a soft default, not a forced route. The
+selector uses an explicitly requested provider first. If that explicit choice
+is unavailable or excluded, it returns a blocker and alternatives without
+executing a substitute. Only an unavailable soft environment preference falls
+back automatically to normal scored selection.
+
+Grok API access is separate from a SuperGrok subscription. A Grok video smoke
+test requires an xAI developer API key with billing, explicit owner approval,
+and an agreed cost cap; capability discovery does not make a paid generation
+call.
 
 <details>
 <summary><strong>Have a GPU? Unlock free local video generation</strong></summary>

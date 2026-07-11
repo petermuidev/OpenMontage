@@ -144,9 +144,14 @@ Three selector tools abstract multi-provider capabilities:
 |----------|-----------|---------------------|
 | `tts_selector` | Text-to-speech | Ranks discovered providers by task fit, quality, control, reliability, cost, latency, and continuity |
 | `image_selector` | Image generation | Ranks discovered providers from the live registry; no hardcoded provider order |
-| `video_selector` | Video generation | Ranks discovered providers from the live registry; user preference is respected when explicitly provided |
+| `video_selector` | Video generation | Explicit preference (block if unavailable), then `VIDEO_GEN_PREFERRED_PROVIDER`, then legacy local-model hint, then scored live-registry ranking; unavailable soft preferences fall back to scoring |
 
-Selectors route based on: user preference when explicitly set, then scored ranking across available providers. They adapt input schemas between providers transparently.
+Selectors remain registry-first: they route through discovered, available
+provider tools rather than importing or hard-locking a backend. Video routing
+uses explicit preference, then the soft environment preference, then scored
+ranking. An unavailable explicit preference returns a user-approval blocker;
+an unavailable soft environment preference returns to the scored candidates.
+Selectors adapt input schemas between providers transparently.
 
 ### Tool Inventory by Category
 

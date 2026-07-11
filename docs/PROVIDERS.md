@@ -48,6 +48,7 @@ FAL_KEY=                     # FLUX, Recraft, Kling, Veo, MiniMax video
 # VIDEO
 HEYGEN_API_KEY=              # HeyGen avatar video gateway
 RUNWAY_API_KEY=              # Runway Gen-4 video (direct)
+VIDEO_GEN_PREFERRED_PROVIDER=grok  # Soft selector default; explicit requests override it
 SUNO_API_KEY=                # Suno music generation
 
 # LOCAL (no keys needed — just GPU + install)
@@ -91,6 +92,21 @@ Current xAI docs pricing for the Grok media models:
 | `grok-imagine-video` input images | $0.002 per input image |
 
 OpenMontage now uses those published rates in the Grok tool estimators.
+
+#### Make Grok the default video provider
+
+Set `VIDEO_GEN_PREFERRED_PROVIDER=grok` to prefer `grok_video` for normal
+selector calls. This does not hard-lock the pipeline: an explicit
+`preferred_provider` input has higher priority, and the selector returns to
+scored provider selection if the soft Grok default is unavailable or filtered
+out. If an explicitly requested provider is unavailable or excluded, the
+selector returns a blocker and alternatives without executing a substitute.
+
+SuperGrok is a consumer subscription and does not provide xAI developer API
+access. A live Grok smoke test therefore requires a separately configured xAI
+API key and billing. Run it only after the owner approves the test and its cost
+cap; registry discovery and selector tests are no-cost checks and do not call
+the generation API.
 
 ---
 

@@ -14,7 +14,7 @@ from tools.base_tool import BaseTool, ToolResult, ToolRuntime, ToolStability, To
 
 class VideoSelector(BaseTool):
     name = "video_selector"
-    version = "0.3.0"
+    version = "0.4.0"
     tier = ToolTier.GENERATE
     capability = "video_generation"
     provider = "selector"
@@ -28,6 +28,7 @@ class VideoSelector(BaseTool):
     ]
     supports = {
         "user_preference_routing": True,
+        "environment_preference_routing": True,
         "offline_fallback": True,
         "reference_image": True,
         "stock_fallback": True,
@@ -45,7 +46,11 @@ class VideoSelector(BaseTool):
             "prompt": {"type": "string"},
             "preferred_provider": {
                 "type": "string",
-                "description": "Provider name or 'auto'. Valid values are discovered at runtime from the registry.",
+                "description": (
+                    "Provider name or 'auto'. An explicit provider overrides "
+                    "VIDEO_GEN_PREFERRED_PROVIDER. Valid values are discovered "
+                    "at runtime from the registry."
+                ),
                 "default": "auto",
             },
             "allowed_providers": {"type": "array", "items": {"type": "string"}},
@@ -155,6 +160,29 @@ class VideoSelector(BaseTool):
         # Normal generation — use scored selection
         tool, score = self._select_best_tool(inputs, candidates, task_context)
         if tool is None:
+            explicit = str(inputs.get("preferred_provider") or "auto").strip().lower()
+            if explicit != "auto":
+                allowed = set(inputs.get("allowed_providers") or [])
+                available = sorted(
+                    {
+                        candidate.provider
+                        for candidate in self._filter_candidates(inputs, candidates)
+                        if candidate.get_status() == ToolStatus.AVAILABLE
+                        and (not allowed or candidate.provider in allowed)
+                    }
+                )
+                return ToolResult(
+                    success=False,
+                    error=(
+                        f"Preferred video provider '{explicit}' is unavailable or "
+                        "excluded. No substitute was executed."
+                    ),
+                    data={
+                        "requested_provider": explicit,
+                        "available_alternatives": available,
+                        "requires_user_approval": True,
+                    },
+                )
             return ToolResult(success=False, error="No video generation provider available.")
 
         # Adapt input keys: stock tools use 'query' while generators use 'prompt'
@@ -197,17 +225,21 @@ class VideoSelector(BaseTool):
     ) -> tuple[BaseTool | None, object]:
         """Select the best provider using scored ranking.
 
-        Respects preferred_provider and environment hints as tie-breakers,
-        but the scoring engine drives the primary selection.
+        Selection precedence is explicit preferred_provider, configured
+        VIDEO_GEN_PREFERRED_PROVIDER, the legacy local-model hint, then scored
+        ranking. An unavailable explicit preference blocks; an unavailable
+        soft environment preference falls back to scoring.
         """
-        from lib.scoring import rank_providers, ProviderScore
+        from lib.scoring import rank_providers
 
-        preferred = inputs.get("preferred_provider", "auto")
+        preferred = str(inputs.get("preferred_provider") or "auto").strip().lower()
+        explicit_preference = preferred != "auto"
         allowed = set(inputs.get("allowed_providers") or [])
         if allowed:
             candidates = [tool for tool in candidates if tool.provider in allowed]
         candidates = self._filter_candidates(inputs, candidates)
 
+        configured_preferred = os.environ.get("VIDEO_GEN_PREFERRED_PROVIDER", "").strip().lower()
         env_hint = os.environ.get("VIDEO_GEN_LOCAL_MODEL", "").lower()
         env_map = {
             "wan2.1-1.3b": "wan",
@@ -217,8 +249,11 @@ class VideoSelector(BaseTool):
             "cogvideo-5b": "cogvideo",
             "cogvideo-2b": "cogvideo",
         }
-        if preferred == "auto" and env_hint in env_map:
-            preferred = env_map[env_hint]
+        if preferred == "auto":
+            if configured_preferred and configured_preferred != "auto":
+                preferred = configured_preferred
+            elif env_hint in env_map:
+                preferred = env_map[env_hint]
 
         rankings = rank_providers(candidates, task_context)
 
@@ -228,12 +263,14 @@ class VideoSelector(BaseTool):
             if tool.provider not in tool_by_provider and tool.get_status() == ToolStatus.AVAILABLE:
                 tool_by_provider[tool.provider] = tool
 
-        # If a preferred provider is explicitly requested and available,
-        # boost it to the top unless its score is drastically worse.
+        # Use the resolved explicit/configured preference when it is available.
+        # Otherwise continue to the highest-scored available provider below.
         if preferred != "auto":
             for score in rankings:
                 if score.provider == preferred and score.provider in tool_by_provider:
                     return tool_by_provider[score.provider], score
+            if explicit_preference:
+                return None, None
 
         # Return the highest-scored available provider
         for score in rankings:
