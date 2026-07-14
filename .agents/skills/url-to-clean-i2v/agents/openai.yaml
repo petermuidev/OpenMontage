@@ -1,0 +1,4 @@
+interface:
+  display_name: "URL to Clean I2V"
+  short_description: "Create face-free I2V POCs from approved video URLs."
+  default_prompt: "Use $url-to-clean-i2v to transform this approved video URL into a face-free image-to-video POC."

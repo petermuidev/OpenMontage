@@ -2,6 +2,10 @@
 
 > For the full agent onboarding guide, see [`AGENT_GUIDE.md`](../AGENT_GUIDE.md) in the project root.
 
+> For previously proven Samui/commercial/editorial media patterns, start with
+> [`docs/recipes/README.md`](../docs/recipes/README.md). It distinguishes accepted
+> defaults from candidates, reference-only experiments, and superseded recipes.
+
 This file lists all available Layer 2 skills and documents the 3-layer knowledge architecture.
 
 ## Knowledge Architecture

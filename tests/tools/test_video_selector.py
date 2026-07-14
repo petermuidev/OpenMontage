@@ -25,6 +25,21 @@ class _Provider(BaseTool):
         return ToolResult(success=True, data={"provider": self.provider})
 
 
+class _LocalReferenceProvider(_Provider):
+    supports = {"image_to_video": True}
+    input_schema = {
+        "type": "object",
+        "properties": {
+            "prompt": {"type": "string"},
+            "reference_image_path": {"type": "string"},
+            "image_url": {"type": "string"},
+        },
+    }
+
+    def execute(self, inputs: dict[str, object]) -> ToolResult:
+        return ToolResult(success=True, data={"received": dict(inputs)})
+
+
 def _select(
     selector: VideoSelector,
     inputs: dict[str, object],
@@ -162,3 +177,26 @@ def test_blocker_alternatives_respect_allowed_providers(monkeypatch):
     assert result.success is False
     assert result.data["available_alternatives"] == ["other"]
     assert result.data["requires_user_approval"] is True
+
+
+def test_local_reference_provider_does_not_require_fal_upload(monkeypatch):
+    selector = VideoSelector()
+    provider = _LocalReferenceProvider("local_reference")
+    monkeypatch.setattr(selector, "_providers", lambda: [provider])
+
+    def fail_upload(_path):
+        raise AssertionError("local-reference provider must not use FAL upload")
+
+    monkeypatch.setattr("tools.video._shared.upload_image_fal", fail_upload)
+    result = selector.execute(
+        {
+            "prompt": "subtle pool motion",
+            "operation": "image_to_video",
+            "preferred_provider": "local_reference",
+            "reference_image_path": "/private/source.png",
+        }
+    )
+
+    assert result.success is True
+    assert result.data["received"]["reference_image_path"] == "/private/source.png"
+    assert "image_url" not in result.data["received"]

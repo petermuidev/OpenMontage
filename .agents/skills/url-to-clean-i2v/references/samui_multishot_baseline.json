@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "baseline_id": "samui-motivation-multishot-v1",
+  "toolchain": {
+    "python": "3.12.13",
+    "pillow": "12.3.0",
+    "ffmpeg": "8.0.1",
+    "platform": "macOS arm64",
+    "exact_hash_scope": "this pinned host toolchain; other toolchains must pass technical and visual QA but may not be byte-identical"
+  },
+  "project_root": "/Users/quanqiu/projects/social-automation/tools/OpenMontage/projects/samui-clean-i2v-pocs",
+  "accepted_master": {
+    "path": "outputs/motivation-multishot/samui-motivation-multishot-final.mp4",
+    "sha256": "f8fa89d567662890000f9c701dd7d4b8bb60bc131298a46eff803e883cd761dd"
+  },
+  "render": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration_seconds": 10.16,
+    "font_path": "/System/Library/Fonts/Supplemental/Verdana Bold.ttf",
+    "brand": "SAMUI MOTION  /  POC",
+    "brand_font_size": 26,
+    "brand_y": 110,
+    "caption_y": 1510,
+    "video_crf": 17,
+    "video_preset": "slow",
+    "audio_bitrate": "192k",
+    "audio_sample_rate": 48000
+  },
+  "narration": {
+    "path": "outputs/motivation-multishot/voice-eldric-motivation.wav",
+    "sha256": "630bd79fbada836bf883c4dcd29101814cea670d7a769c83469aac1647fa3c9c",
+    "script": "Stop waiting for the perfect moment. Step away from the noise. Choose a new view. Let your next chapter begin in Samui.",
+    "voice": "Eldric Sage",
+    "model": "qwen3-tts-instruct-flash",
+    "target_lufs": -16,
+    "true_peak_db": -1.5,
+    "lra": 7
+  },
+  "music": {
+    "path": "/Users/quanqiu/projects/FAce/media/audio/tropical-luxury-ocean-bed-15s-audible.m4a",
+    "sha256": "ce50cafdb05548a6be141688613b59733dbadf55c554c7a982370ef29e434655",
+    "gain": 0.12,
+    "fade_in_seconds": 0.6,
+    "fade_out_start": 9.1,
+    "fade_out_seconds": 1.06
+  },
+  "shots": [
+    {
+      "source": "outputs/pool-scenic-happyhorse-3s.mp4",
+      "sha256": "f13f24624980dc2aa6ee7979b83a2fb6d9cb1dfcdef97b653af8258ec56f447a",
+      "source_trim_seconds": 2.96,
+      "speed_factor": 1.0,
+      "caption": "STOP WAITING",
+      "caption_font_size": 62,
+      "caption_color": [255, 255, 255, 255],
+      "caption_enable": [0.0, 2.95]
+    },
+    {
+      "source": "outputs/motivation-multishot/shot02-villa-pool-wan.mp4",
+      "sha256": "bd2758b0922c086d6da8a39381df0cbef01b0f36659b9819e08a36708a6a893e",
+      "source_trim_seconds": 2.0,
+      "speed_factor": 1.29,
+      "caption": "STEP AWAY FROM THE NOISE",
+      "caption_font_size": 49,
+      "caption_color": [255, 255, 255, 255],
+      "caption_enable": [2.95, 5.53]
+    },
+    {
+      "source": "outputs/motivation-multishot/shot03-villa-living-wan.mp4",
+      "sha256": "40f5f4c8c2b3454242beb3797c113d2a0b7ee3da7f115cd17b91b4dd50d6a150",
+      "source_trim_seconds": 2.0,
+      "speed_factor": 0.94,
+      "caption": "CHOOSE A NEW VIEW",
+      "caption_font_size": 55,
+      "caption_color": [255, 255, 255, 255],
+      "caption_enable": [5.53, 7.41]
+    },
+    {
+      "source": "outputs/pool-scenic-wan26-flash-2s-v2.mp4",
+      "sha256": "c53519b141525d57e5842c94467efd9f9a4544765e4094d26e4e1ce6ff74018a",
+      "source_trim_seconds": 2.0,
+      "speed_factor": 1.375,
+      "caption": "BEGIN IN SAMUI",
+      "caption_font_size": 62,
+      "caption_color": [244, 212, 138, 255],
+      "caption_enable": [7.41, 10.16]
+    }
+  ],
+  "paid_regeneration": {
+    "enabled_by_this_manifest": false,
+    "rule": "This manifest only recomposes accepted local artifacts. Motion or narration regeneration requires a separate owner-approved provider call."
+  }
+}

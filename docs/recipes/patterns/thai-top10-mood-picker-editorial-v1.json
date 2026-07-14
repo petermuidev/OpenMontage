@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "thai-top10-mood-picker-editorial-v1",
+  "title": "Short top-ten movie mood picker",
+  "status": "superseded",
+  "lane": "editorial",
+  "best_for": ["a deliberately shallow 30-40 second mood-only list"],
+  "avoid_when": ["the user asks for a synopsis or enough context to choose a film"],
+  "source_contract": ["Use approved poster and exact bilingual title records", "Do not use ripped film footage"],
+  "creative_contract": ["Pair each mood with exactly one title", "Keep matching poster and bilingual title visible", "Generate voice first and time scenes from the subtitle sidecar"],
+  "qa_contract": ["Check frame zero, title/poster matches, Thai glyphs, timing, codec, dimensions, and loudness"],
+  "hard_rejections": ["using this as the default top-ten recipe", "claiming it satisfies a multi-sentence synopsis request", "poster/title mismatch", "music-only output"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/thai-top10-mood-picker-editorial-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "openmontage", "path": "projects/thai-movies-ten-in-one-poc/PATTERN.json", "role": "superseded pattern contract", "tracked": false}
+  ],
+  "reproduce": {"command": null, "working_repo": "openmontage", "paid_calls": false, "notes": ["Use only when the owner explicitly asks for a short mood picker"]},
+  "proof": {"disposition": "User judged the structure quite correct but narration too short", "qa": "Complete candidate render, superseded by the three-sentence synopsis recipe", "output_repo": "openmontage", "output_path": "projects/thai-movies-ten-in-one-poc/renders/thai-movies-top10-one-clip-final.mp4", "output_sha256": "dcf55711e2d97e84f9c5b5f697a3571c294ececb074dc8a7ad053c4c1d06650c"},
+  "superseded_by": "thai-top10-three-sentence-synopsis-v1"
+}

@@ -110,6 +110,40 @@ the generation API.
 
 ---
 
+### Alibaba Cloud Model Studio — Wan/HappyHorse Video + Qwen TTS
+
+Set `DASHSCOPE_API_KEY` and a matching `DASHSCOPE_REGION` (`beijing` or
+`singapore`). If the account has a workspace-specific native endpoint, set it
+through `DASHSCOPE_BASE_URL`. Keys, models, and endpoints are region-bound.
+
+**Tools unlocked:** `happyhorse_video`, `qwen_tts`
+
+- `happyhorse_video` uses `happyhorse-1.1-i2v` for first-frame image-to-video,
+  supports 3–15 seconds at 720P/1080P, records fixed-seed provenance, downloads
+  the expiring result immediately, and persists a recoverable task record before
+  polling.
+- `dashscope_wan_video` uses silent `wan2.6-i2v-flash` for low-cost first-frame
+  motion, supports 2–15 seconds at 720P/1080P, and uses the same recoverable
+  async task contract. Route it to locked-camera still-image animation that will
+  be composed with cuts, captions, music, or voiceover. It is not the standalone
+  hero-video quality default. Reject any invented building, facility, person,
+  or object.
+- `qwen_tts` uses non-real-time `qwen3-tts-flash` with documented built-in
+  voices. Qwen3 TTS does not list Thai, so it is not a Thai narration route.
+
+The minimum bounded HappyHorse test is 3 seconds at 720P: USD 0.371307 in
+Beijing or USD 0.42 in Singapore at the published July 2026 rates. Generated
+motion is a creative insert and must not be presented as factual source proof.
+The low-cost Wan default is silent 720P `wan2.6-i2v-flash`: USD 0.021503 per
+second in Beijing (USD 0.043006 for the two-second minimum) at the published
+July 2026 rate. Add licensed music or narration during deterministic post.
+
+Owner quality rule: prefer HappyHorse for hero shots, visible camera motion,
+and standalone clips. Prefer Wan Flash only for economical still-animation
+layers inside a larger composition.
+
+---
+
 ### fal.ai — Multi-Model Gateway
 
 > **Broad single-key coverage.** One API key unlocks image and video providers across multiple models.

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-07-14",
+  "purpose": "Route agents to reproducible media patterns without mistaking a technical render for an accepted creative baseline.",
+  "repository_roots": {
+    "openmontage": "/Users/quanqiu/projects/social-automation/tools/OpenMontage",
+    "face": "/Users/quanqiu/worktrees/FAce-five-funnel"
+  },
+  "default_routing_order": [
+    "accepted-baseline",
+    "accepted-pattern",
+    "proven-candidate",
+    "reference-only"
+  ],
+  "recipes": [
+    {"recipe_id": "face-showcase-2026-07-12", "record": "patterns/face-showcase-2026-07-12.json"},
+    {"recipe_id": "url-to-clean-i2v-v1", "record": "patterns/url-to-clean-i2v-v1.json"},
+    {"recipe_id": "fullframe-source-subtitle-blur-v1", "record": "patterns/fullframe-source-subtitle-blur-v1.json"},
+    {"recipe_id": "samui-motivation-multishot-v1", "record": "patterns/samui-motivation-multishot-v1.json"},
+    {"recipe_id": "engagement-four-choice-v1", "record": "patterns/engagement-four-choice-v1.json"},
+    {"recipe_id": "thai-film-one-thesis-editorial-v1", "record": "patterns/thai-film-one-thesis-editorial-v1.json"},
+    {"recipe_id": "thai-top10-three-sentence-synopsis-v1", "record": "patterns/thai-top10-three-sentence-synopsis-v1.json"},
+    {"recipe_id": "tiktok-source-reframes-v1", "record": "patterns/tiktok-source-reframes-v1.json"},
+    {"recipe_id": "samui-tiktok-vibe-three-formats-v1", "record": "patterns/samui-tiktok-vibe-three-formats-v1.json"},
+    {"recipe_id": "thai-top10-mood-picker-editorial-v1", "record": "patterns/thai-top10-mood-picker-editorial-v1.json"}
+  ]
+}

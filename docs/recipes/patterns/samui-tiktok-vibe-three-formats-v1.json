@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "samui-tiktok-vibe-three-formats-v1",
+  "title": "Samui TikTok vibe three-format experiment",
+  "status": "reference-only",
+  "lane": "engagement",
+  "best_for": ["comparing one-view, narrated mood, and saveable-itinerary formats"],
+  "avoid_when": ["an accepted production default is required"],
+  "source_contract": ["Use approved ocean clips or images with provenance", "Use only approved narration and music"],
+  "creative_contract": ["Variant one: one real view, music, two lines", "Variant two: multiple approved images, English narration, sparse captions", "Variant three: six-image saveable itinerary with faster motion and a question"],
+  "qa_contract": ["Require independent playback review for every variant", "Do not promote based on codec and duration checks alone"],
+  "hard_rejections": ["calling any current variant accepted", "voice unrelated to image", "generic slideshow pacing"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/samui-tiktok-vibe-three-formats-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "face", "path": "strategy/showcase/SAMUI_TIKTOK_VIBE_POCS.md", "role": "experiment definitions", "tracked": true},
+    {"repo": "face", "path": "media/exports/samui-tiktok-vibe-pocs-2026-07-13/QA_REPORT.json", "role": "technical-only QA", "tracked": false}
+  ],
+  "reproduce": {"command": "python3 scripts/build_samui_tiktok_vibe_pocs.py --dry-run", "working_repo": "face", "paid_calls": false, "notes": ["Use only for controlled comparison", "The accepted narrated replacement is samui-motivation-multishot-v1"]},
+  "proof": {"disposition": "Retained to preserve the experiment and its lessons", "qa": "Technical PASS for three outputs; all independent reviews remain PENDING; vibe03 is the representative rendered proof", "output_repo": "face", "output_path": "media/exports/samui-tiktok-vibe-pocs-2026-07-13/vibe03_save_this_day_music_12s.mp4", "output_sha256": "6358df3d072e52db8482f012e356498c1bc467d86536915b3bf50fa5a65729b0"}
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "face-showcase-2026-07-12",
+  "title": "FAce ten-format Samui commercial showcase",
+  "status": "accepted-baseline",
+  "lane": "commercial-showcase",
+  "best_for": ["property, tour, dive, food, and destination sales samples", "deterministic real-media stills and short vertical video"],
+  "avoid_when": ["the source media or claims are not owner-approved", "the deliverable needs generated scenery or a complex narrative"],
+  "source_contract": ["Use owner-approved real media and approved claims only", "Keep source provenance and SHA-256 evidence", "Apply the exact SAMPLE/POC disclosure"],
+  "creative_contract": ["Use the accepted blueprint matching the requested format", "Protect the real subject during cropping", "Keep bilingual copy sparse and Thai text correctly shaped", "Show a useful first frame", "For 15-second reels use at least four meaningful changes and 1.5-3 second pacing", "Never present generated scenery as operator media"],
+  "qa_contract": ["Run technical QA, CRV, full playback, baseline comparison, and independent visual review", "For video require 1080x1920 H.264 yuv420p 30fps AAC", "Keep integrated loudness between -18 and -14 LUFS", "Do not overwrite the locked baseline for a new candidate"],
+  "hard_rejections": ["unsupported price, availability, ROI, legal, facility, or safety claim", "missing disclosure", "tofu Thai glyphs", "bad subject crop", "slideshow-like motion", "technical pass without creative acceptance"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/face-showcase-2026-07-12.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "face", "path": "strategy/showcase/baseline_lock.json", "role": "accepted hashes and promotion policy", "tracked": true},
+    {"repo": "face", "path": "strategy/showcase/creative_blueprints.json", "role": "ten reproducible layout and motion blueprints", "tracked": true},
+    {"repo": "face", "path": "strategy/showcase/poc_10.json", "role": "source and claim manifest", "tracked": true},
+    {"repo": "face", "path": "scripts/build_showcase_pack.py", "role": "deterministic builder", "tracked": true},
+    {"repo": "face", "path": "SHOWCASE_BASELINE_README.md", "role": "human reproduction guide", "tracked": true}
+  ],
+  "reproduce": {"command": "python3 scripts/build_showcase_pack.py --manifest strategy/showcase/poc_10.json --output media/exports/showcase-<new-date>", "working_repo": "face", "paid_calls": false, "notes": ["Use --dry-run before rendering and --qa-only after", "Use a new dated output; rebuilding the locked baseline requires explicit FACE_ALLOW_BASELINE_REBUILD=1"]},
+  "proof": {"disposition": "Owner accepted and locked the showcase as the first quality baseline", "qa": "Ten deliverables accepted; three videos passed CRV and independent visual review; poc05 is the primary video proof", "output_repo": "face", "output_path": "media/exports/showcase-2026-07-12/poc05_sbp_vertical_reel_15s.mp4", "output_sha256": "4dfaa25175587be9336b63329fea44ed434ee545f8987150333ad8af9650903b"},
+  "variants": [
+    {"blueprint_id": "sbp-meta-poster-4x5-v1", "poc_id": "poc01", "builder": "property_poster", "use": "4:5 premium property poster"},
+    {"blueprint_id": "sbp-square-feed-ad-v1", "poc_id": "poc02", "builder": "property_square", "use": "1:1 compact feed ad"},
+    {"blueprint_id": "sbp-listing-hero-16x9-v1", "poc_id": "poc03", "builder": "property_hero", "use": "minimal listing hero"},
+    {"blueprint_id": "sbp-mobile-carousel-six-role-v1", "poc_id": "poc04", "builder": "property_carousel", "use": "six-slide mobile sales sequence"},
+    {"blueprint_id": "sbp-hyperframes-reel-15s-v1", "poc_id": "poc05", "builder": "sbp_hyperframes_reel", "use": "five-scene bilingual property reel"},
+    {"blueprint_id": "tour-offer-card-4x5-v1", "poc_id": "poc06", "builder": "tour_offer_card", "use": "tour inquiry card"},
+    {"blueprint_id": "tour-full-bleed-reel-15s-v1", "poc_id": "poc07", "builder": "ffmpeg_story_reel", "use": "five-scene immersive tour reel"},
+    {"blueprint_id": "dive-editorial-cover-9x16-v1", "poc_id": "poc08", "builder": "dive_cover", "use": "portrait-safe dive reel cover"},
+    {"blueprint_id": "cooking-whatsapp-card-4x5-v1", "poc_id": "poc09", "builder": "cooking_card", "use": "2+1 food collage inquiry card"},
+    {"blueprint_id": "samui-real-video-bumper-6s-v1", "poc_id": "poc10", "builder": "ocean_bumper", "use": "six-second real-video title bumper"}
+  ]
+}

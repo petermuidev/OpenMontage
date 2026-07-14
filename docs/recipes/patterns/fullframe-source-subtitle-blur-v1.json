@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "fullframe-source-subtitle-blur-v1",
+  "title": "Full-frame source recut with tracked subtitle blur",
+  "status": "accepted-pattern",
+  "lane": "source-transformation",
+  "best_for": [
+    "recomposing an approved vertical villa or tour video while preserving the complete original frame",
+    "removing burned-in titles and subtitles from selected human-free scenes and replacing them with clean editorial copy",
+    "music-led property or destination reels that do not need narration"
+  ],
+  "avoid_when": [
+    "the source aspect ratio does not match the delivery and reframing is required",
+    "a presenter, face, or reflection remains in every usable interval",
+    "source text crosses a moving subject and cannot be covered with a narrow tracked mask",
+    "true object removal or scene reconstruction is required"
+  ],
+  "source_contract": [
+    "Use only owner-approved source video and record its URL and SHA-256",
+    "Inspect the complete source with CRV, one-second contact sheets, and exact boundary frames",
+    "Select only human-free intervals and recheck faces and reflections at both boundaries",
+    "Map each burned-in title and subtitle region per shot instead of assuming one global mask",
+    "Use licensed music and remove all original source audio"
+  ],
+  "creative_contract": [
+    "Scale the complete original 9:16 frame directly to 1080x1920 without cropping, background fill, or invented scenery",
+    "Use narrow per-shot tracked blur masks over only the original title and subtitle regions",
+    "Add concise replacement subtitles on a readable editorial card inside mobile-safe margins",
+    "Build a smooth multi-shot sequence from approximately three-second scenes with short dissolves",
+    "Limit copy to visible property facts and mood; do not invent facilities, price, availability, or performance claims",
+    "Use vibe music only unless the requested recipe explicitly calls for narration"
+  ],
+  "qa_contract": [
+    "Verify source_frame_crop is false and the full original 9:16 frame is visible",
+    "Review the first and last frames of every shot to ensure source text does not escape a moving mask",
+    "Reject any visible presenter, face, reflection, original title, or original subtitle",
+    "Run full-playback review plus CRV sampled-frame review after the final encode",
+    "Require 1080x1920 H.264 yuv420p at 30 fps with AAC audio and no black segments",
+    "Keep music near -18 to -14 LUFS with no clipping"
+  ],
+  "hard_rejections": [
+    "cropped foreground or blurred background fill described as full-frame preservation",
+    "a broad blur block that hides meaningful room or architectural detail",
+    "original title or subtitle characters visible outside the tracked mask",
+    "a presenter, face, or reflection retained in a selected shot",
+    "original speech or source audio retained",
+    "generated facilities or unverified property claims"
+  ],
+  "canonical_artifacts": [
+    {
+      "repo": "openmontage",
+      "path": "docs/recipes/patterns/fullframe-source-subtitle-blur-v1.json",
+      "role": "portable recipe contract",
+      "tracked": true
+    },
+    {
+      "repo": "openmontage",
+      "path": "projects/sun-samui-villa-narrated-dual-poc/build_fullframe_blurred_subtitles.py",
+      "role": "deterministic full-frame builder",
+      "tracked": false
+    },
+    {
+      "repo": "openmontage",
+      "path": "projects/sun-samui-villa-narrated-dual-poc/artifacts/REPRODUCTION_BLUEPRINT.md",
+      "role": "source selection, blur-mask, composition, and safety contract",
+      "tracked": false
+    },
+    {
+      "repo": "openmontage",
+      "path": "projects/sun-samui-villa-narrated-dual-poc/artifacts/QA_REPORT.json",
+      "role": "accepted technical and visual QA evidence",
+      "tracked": false
+    }
+  ],
+  "reproduce": {
+    "command": ".venv/bin/python projects/sun-samui-villa-narrated-dual-poc/build_fullframe_blurred_subtitles.py",
+    "working_repo": "openmontage",
+    "paid_calls": false,
+    "notes": [
+      "Create a new dated project or output; never overwrite the accepted proof",
+      "Rebuild the interval and per-shot mask map for every new source",
+      "The sibling narrated and cropped outputs are alternatives, not this full-frame recipe"
+    ]
+  },
+  "proof": {
+    "disposition": "Owner accepted the corrected full-frame, subtitle-blurred, music-led result as a reusable pattern on 2026-07-14",
+    "qa": "PASS: 26.9 seconds, 1080x1920 H.264 yuv420p at 30 fps, AAC stereo, -15.4 LUFS, -2.5 dBFS true peak, no black segments, no humans, no source text, full original frame preserved",
+    "output_repo": "openmontage",
+    "output_path": "projects/sun-samui-villa-narrated-dual-poc/outputs/sun-samui-fullframe-blurred-subtitles-v1.mp4",
+    "output_sha256": "341932e2807098d466d39da523549145588b51e89ec9448f603484ed8873986e"
+  },
+  "variants": [
+    {
+      "blueprint_id": "fullframe-music-recaption-v1",
+      "status": "accepted",
+      "builder": "build_fullframe_blurred_subtitles.py",
+      "distinction": "Preserves the complete source frame; tracked blur removes source text; replacement subtitles and music provide the new edit."
+    }
+  ]
+}

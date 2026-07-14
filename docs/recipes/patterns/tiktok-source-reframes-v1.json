@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "tiktok-source-reframes-v1",
+  "title": "TikTok source reframe and recut variants",
+  "status": "reference-only",
+  "lane": "source-transformation",
+  "best_for": ["studying continuous scenic reframes", "testing a five-beat walkthrough recut"],
+  "avoid_when": ["a new agent needs an accepted default", "the source contains people that should be removed rather than directly reused"],
+  "source_contract": ["Use owner-approved private-cache media with URL provenance", "Remove original audio and retain visible POC disclosure"],
+  "creative_contract": ["Choose among scenic translate, five-beat walkthrough recut, or three-beat human moment only after source review", "Use approved music and protect the subject during vertical reframing"],
+  "qa_contract": ["Technical QA is necessary but insufficient", "Require independent visual review before promotion"],
+  "hard_rejections": ["treating the current technical pass as creative acceptance", "copying a source and merely adding captions", "reusing another person's face without the approved purpose"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/tiktok-source-reframes-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "face", "path": "strategy/showcase/SAMUI_TIKTOK_SOURCE_REFRAMES.md", "role": "experiment notes", "tracked": true},
+    {"repo": "face", "path": "scripts/build_tiktok_source_reframes.py", "role": "candidate builder", "tracked": false},
+    {"repo": "face", "path": "media/exports/samui-tiktok-source-reframes-2026-07-13/QA_REPORT.json", "role": "technical-only QA", "tracked": false}
+  ],
+  "reproduce": {"command": "python3 scripts/build_tiktok_source_reframes.py --dry-run", "working_repo": "face", "paid_calls": false, "notes": ["Do not route production here until an independent review passes", "Prefer url-to-clean-i2v-v1 when transformation and human/object removal are required"]},
+  "proof": {"disposition": "Retained as reference only", "qa": "Technical PASS for three outputs; every visual_review remains PENDING; source02 is the representative rendered proof", "output_repo": "face", "output_path": "media/exports/samui-tiktok-source-reframes-2026-07-13/source02_villa_recut_music_15s.mp4", "output_sha256": "239d9ff8eee328fb24eec6094875fc6f898acd4ad44d9bffcf64e6cb16d80f65"}
+}

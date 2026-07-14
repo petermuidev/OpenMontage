@@ -29,6 +29,7 @@ Agent reads pipeline manifest (YAML) → reads stage director skill (MD)
 - **Stage director skills:** `skills/pipelines/<pipeline>/<stage>-director.md`
 - **Meta skills:** `skills/meta/*.md` (reviewer, checkpoint-protocol, skill-creator)
 - **Architecture deep-dive:** `docs/ARCHITECTURE.md`
+- **Accepted media recipes:** `docs/recipes/README.md` (reproduction routing, proof, and rejection rules)
 
 ## Knowledge Architecture (3 Layers)
 
@@ -79,6 +80,7 @@ Each tool's `agent_skills[]` field bridges Layer 1 → Layer 3. See `skills/INDE
 | `skills/core/hyperframes.md` | Layer 2 — when OpenMontage should pick HyperFrames vs Remotion, artifact → workspace mapping |
 | `schemas/styles/playbook.schema.json` | Playbook schema v2 with design tokens (chart_palette, scale_system, weight_matrix, color_rules) |
 | `tests/qa/` | Quality validation test scripts for tool-by-tool output inspection |
+| `docs/recipes/` | Reusable media recipe catalog; accepted baselines, candidates, proof, and reproducibility contracts |
 
 ## Available Pipelines
 

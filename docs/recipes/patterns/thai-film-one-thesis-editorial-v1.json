@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "thai-film-one-thesis-editorial-v1",
+  "title": "One Thai film, one emotional thesis",
+  "status": "accepted-baseline",
+  "lane": "editorial",
+  "best_for": ["20-30 second narrated movie recommendations", "one-film emotional storytelling"],
+  "avoid_when": ["a ranked list is required", "approved trailer or poster media is unavailable"],
+  "source_contract": ["Use an official trailer or owner-approved film media for a private editorial POC", "Mute source audio", "Keep a landscape film window rather than destructive portrait cropping"],
+  "creative_contract": ["Contradict the title or expectation in the hook", "State the protagonist's imperfect motive", "Show how ordinary moments change that motive", "Deliver one emotional thesis", "Recommend by viewer taste", "Close with a personal question", "Generate narration before selecting final shots", "Keep captions to one phrase and at most seven words"],
+  "qa_contract": ["Full playback plus start, quarter, middle, three-quarter, and end samples", "CRV, black/freeze, loudness, codec, and dimension checks", "Verify each shot supports the current spoken beat", "Target about -16 LUFS"],
+  "hard_rejections": ["plot-dump narration", "voice unrelated to the visible shot", "source trailer audio", "fake score or availability", "ranked-list template reuse"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/thai-film-one-thesis-editorial-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "openmontage", "path": "projects/thai-film-story-poc-grandma/PATTERN.json", "role": "accepted pattern contract", "tracked": false},
+    {"repo": "openmontage", "path": "projects/thai-film-story-poc-grandma/DESIGN.md", "role": "visual and audio grammar", "tracked": false},
+    {"repo": "openmontage", "path": "projects/thai-film-story-poc-grandma/SCRIPT.md", "role": "accepted story example", "tracked": false}
+  ],
+  "reproduce": {"command": null, "working_repo": "openmontage", "paid_calls": false, "notes": ["Treat the story shape as the recipe; do not copy the film-specific words", "Use the original project as a visual comparison baseline"]},
+  "proof": {"disposition": "Owner accepted the revised single-film story as not bad", "qa": "Accepted baseline project includes full review and QA artifacts", "output_repo": "openmontage", "output_path": "projects/thai-film-story-poc-grandma/renders/thai-film-story-poc-final.mp4", "output_sha256": "2d7fcaa02f9547d8144f9bcee21cc251d149df540ad32a64ec5e929e3eb8ba46"}
+}

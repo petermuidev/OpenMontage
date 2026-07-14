@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmontage.local/schemas/recipes/media_recipe.schema.json",
+  "title": "OpenMontage reusable media recipe",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "recipe_id",
+    "title",
+    "status",
+    "lane",
+    "best_for",
+    "source_contract",
+    "creative_contract",
+    "qa_contract",
+    "canonical_artifacts",
+    "proof"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "recipe_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+    "title": {"type": "string", "minLength": 3},
+    "status": {
+      "enum": [
+        "accepted-baseline",
+        "accepted-pattern",
+        "proven-candidate",
+        "reference-only",
+        "superseded"
+      ]
+    },
+    "lane": {
+      "enum": ["commercial-showcase", "source-transformation", "engagement", "editorial"]
+    },
+    "best_for": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "avoid_when": {"type": "array", "items": {"type": "string"}},
+    "source_contract": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "creative_contract": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "qa_contract": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "hard_rejections": {"type": "array", "items": {"type": "string"}},
+    "canonical_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repo", "path", "role"],
+        "properties": {
+          "repo": {"enum": ["openmontage", "face"]},
+          "path": {"type": "string", "minLength": 1},
+          "role": {"type": "string", "minLength": 1},
+          "tracked": {"type": "boolean"}
+        }
+      }
+    },
+    "reproduce": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command": {"type": ["string", "null"]},
+        "working_repo": {"enum": ["openmontage", "face"]},
+        "paid_calls": {"type": "boolean"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disposition", "qa", "output_repo", "output_path", "output_sha256"],
+      "properties": {
+        "disposition": {"type": "string", "minLength": 1},
+        "qa": {"type": "string", "minLength": 1},
+        "output_repo": {"enum": ["openmontage", "face"]},
+        "output_path": {"type": "string", "minLength": 5, "pattern": "\\.(mp4|mov|webm)$"},
+        "output_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "variants": {"type": "array", "items": {"type": "object"}},
+    "superseded_by": {"type": ["string", "null"]}
+  }
+}

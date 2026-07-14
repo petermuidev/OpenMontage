@@ -44,6 +44,24 @@ This is a first-class workflow in OpenMontage.
 - **Reference-driven request:** "make me something like this" -> use `video-reference-analyst.md`
 - **Source-footage request:** "edit this footage" / "cut this into clips" -> use `source_media_review` and the appropriate footage-led pipeline
 
+## URL-to-clean-I2V entry point
+
+When the user sends a TikTok, Reel, Short, or other video URL and asks to
+transform it through frame extraction, object/person removal, and image-to-video
+generation, read `.agents/skills/url-to-clean-i2v/SKILL.md` before production.
+
+Do not collapse this request into a direct recut or a caption overlay. The
+required chain is source provenance → face/object/text gate → extracted frame →
+precise image cleanup → cleaned-frame review → bounded I2V sample → motion review.
+Provider failure must block or request an approved provider change; it must not
+silently fall back to a still animation.
+
+For the accepted narrated multi-shot proof, run the skill's
+`.agents/skills/url-to-clean-i2v/scripts/reproduce_multishot_baseline.py --check`
+before production. Offline
+recomposition is allowed; paid/stochastic motion or voice regeneration still
+requires owner approval.
+
 If a model misses this distinction, it will often fall back to plain search + guesswork. That is incorrect for OpenMontage.
 
 ## Rule Zero — All Production Goes Through a Pipeline

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "url-to-clean-i2v-v1",
+  "title": "Approved URL to cleaned frame to bounded I2V",
+  "status": "accepted-pattern",
+  "lane": "source-transformation",
+  "best_for": ["turning an owner-supplied reference URL into transformed face-free motion", "extracting one truthful scenic frame rather than copying a source edit"],
+  "avoid_when": ["reuse rights or owner approval are unknown", "the source has no cleanable face-free frame", "a direct recut is the actual requested deliverable"],
+  "source_contract": ["Record URL and private-download provenance", "Review the full source before frame selection", "Gate people, faces, reflections, embedded text, logos, and unwanted objects", "Preserve architecture, perspective, crop, and material facts during cleanup"],
+  "creative_contract": ["Extract a candidate frame", "Perform a precise object-removal edit", "QA the full-resolution cleaned frame", "Run one bounded I2V sample before batching", "Default to HappyHorse for standalone hero quality", "Use wan2.6-i2v-flash for low-cost locked-camera motion inside a larger composition"],
+  "qa_contract": ["Reject any human remnant or embedded text", "Reject new buildings, facilities, furniture, views, or geometry", "Review motion output before generating additional shots", "Record provider, model, seed, cost, task, and output provenance"],
+  "hard_rejections": ["public visibility treated as reuse permission", "camera move revealing an invented building", "provider substitution hidden from the record", "batch generation before the first sample passes"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/url-to-clean-i2v-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "openmontage", "path": ".agents/skills/url-to-clean-i2v/SKILL.md", "role": "agent execution contract", "tracked": true},
+    {"repo": "openmontage", "path": "projects/samui-clean-i2v-pocs/artifacts/PATTERN_LOCK.json", "role": "accepted samples, costs, sources, and owner routing rule", "tracked": false}
+  ],
+  "reproduce": {"command": null, "working_repo": "openmontage", "paid_calls": true, "notes": ["Follow the skill stage by stage", "Stop for owner approval before any paid I2V call", "One sample is not permission to batch"]},
+  "proof": {"disposition": "Owner accepted HappyHorse as the quality lane and Wan Flash as the still-animation composition lane", "qa": "Clean-frame gates passed; accepted Wan sample contains no people, new building, or geometry drift", "output_repo": "openmontage", "output_path": "projects/samui-clean-i2v-pocs/outputs/pool-scenic-wan26-flash-2s-v2.mp4", "output_sha256": "c53519b141525d57e5842c94467efd9f9a4544765e4094d26e4e1ce6ff74018a"}
+}

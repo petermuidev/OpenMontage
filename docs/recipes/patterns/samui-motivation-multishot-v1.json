@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "samui-motivation-multishot-v1",
+  "title": "Samui multi-shot narrated motivation reel",
+  "status": "accepted-baseline",
+  "lane": "engagement",
+  "best_for": ["8-15 second face-free narrated Samui reels", "four-shot emotional or motivational edits"],
+  "avoid_when": ["the source cannot support four distinct truthful shots", "a factual property or tour offer needs detailed claims"],
+  "source_contract": ["Use owner-approved media with provenance", "Clean every selected frame of faces, bodies, reflections, text, and unwanted objects before motion generation"],
+  "creative_contract": ["Use at least four meaningful shots", "Show a useful visual and spoken hook immediately", "Cut on narration sentence pauses", "Use one short mobile-safe caption per spoken idea", "Keep licensed music subordinate to narration", "Use HappyHorse for hero motion and Wan Flash only as a restrained composition layer"],
+  "qa_contract": ["Review full playback and sampled frames", "Compare readability, pacing, geometry, and audio against the locked master", "Require no human remnants or invented scene facts", "Target narration-led mix near -16 LUFS"],
+  "hard_rejections": ["fewer than four meaningful shots", "blank or title-only opening", "human remnants", "invented facilities or geometry drift", "unsupported TTS voice", "dense captions", "technical pass without visual and audio review"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/samui-motivation-multishot-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "openmontage", "path": "projects/samui-clean-i2v-pocs/artifacts/BASELINE_LOCK.json", "role": "owner acceptance and immutable master proof", "tracked": false},
+    {"repo": "openmontage", "path": "projects/samui-clean-i2v-pocs/artifacts/MULTISHOT_NARRATION_BLUEPRINT.json", "role": "original production blueprint", "tracked": false},
+    {"repo": "openmontage", "path": ".agents/skills/url-to-clean-i2v/references/samui_multishot_baseline.json", "role": "portable reproduction manifest", "tracked": true},
+    {"repo": "openmontage", "path": ".agents/skills/url-to-clean-i2v/scripts/reproduce_multishot_baseline.py", "role": "offline reproducer", "tracked": true}
+  ],
+  "reproduce": {"command": "python3 .agents/skills/url-to-clean-i2v/scripts/reproduce_multishot_baseline.py --check", "working_repo": "openmontage", "paid_calls": false, "notes": ["Offline recomposition uses accepted artifacts and must match the locked SHA on the pinned toolchain", "Paid shot regeneration is a separate owner-approved action"]},
+  "proof": {"disposition": "Owner said: not bad; lock this baseline", "qa": "Locked master; exact offline recomposition verified", "output_repo": "openmontage", "output_path": "projects/samui-clean-i2v-pocs/outputs/motivation-multishot/samui-motivation-multishot-final.mp4", "output_sha256": "f8fa89d567662890000f9c701dd7d4b8bb60bc131298a46eff803e883cd761dd"}
+}

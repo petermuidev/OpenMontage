@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "engagement-four-choice-v1",
+  "title": "Four-choice sound-off engagement reel",
+  "status": "accepted-pattern",
+  "lane": "engagement",
+  "best_for": ["low-friction comment farming using four visually distinct Samui choices", "sound-off social posts"],
+  "avoid_when": ["the four options are visually similar", "narration or detailed explanation is the main value"],
+  "source_contract": ["Use four owner-approved images with distinct roles", "Keep source hashes and disclosure"],
+  "creative_contract": ["Open with the decision hook", "Show four numbered full-bleed choices for about 2.4 seconds each", "Close with a comparison grid and one 1-4 comment prompt", "Make every required meaning readable without audio", "Music may support but never carry the message"],
+  "qa_contract": ["Verify hook, numbers, bilingual labels, and prompt sound-off", "Review mobile crops and frame-one utility", "Run CRV, black/freeze, codec, dimensions, and loudness checks", "Target 1080x1920, 30fps, 12 seconds, and about -16 LUFS"],
+  "hard_rejections": ["options without distinct visual meaning", "voice required to understand the prompt", "tiny choice labels", "missing final comparison or interaction prompt"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/engagement-four-choice-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "face", "path": "strategy/showcase/ENGAGEMENT_FARM_POC.md", "role": "pattern and reproduction notes", "tracked": true},
+    {"repo": "face", "path": "media/exports/engagement-farm-poc-2026-07-12/QA_REPORT.json", "role": "technical, CRV, and independent review proof", "tracked": false}
+  ],
+  "reproduce": {"command": null, "working_repo": "face", "paid_calls": false, "notes": ["Reuse the timing and decision grammar, not the original topic", "A narrated variant is a new candidate and must be reviewed separately"]},
+  "proof": {"disposition": "Promoted because technical, CRV, and independent visual review all passed", "qa": "PASS; no black/freeze; -15.7 LUFS; first-frame and sound-off gates passed", "output_repo": "face", "output_path": "media/exports/engagement-farm-poc-2026-07-12/engagement_poc01_pick_your_samui_day_12s.mp4", "output_sha256": "cb1d7ebb1e4ec487f325420297d7dc68fdfcf8432c227fdbd0e6308841c7a998"}
+}

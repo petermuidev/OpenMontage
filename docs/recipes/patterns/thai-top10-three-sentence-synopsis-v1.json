@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "thai-top10-three-sentence-synopsis-v1",
+  "title": "Top ten films with three-sentence synopses",
+  "status": "proven-candidate",
+  "lane": "editorial",
+  "best_for": ["saveable long-form top-ten movie guides", "lists where viewers need enough plot context to choose"],
+  "avoid_when": ["the target platform requires a sub-60-second clip", "premises and approved poster/title records are not source-checked"],
+  "source_contract": ["Use source-checked premises and approved poster/title thumbnails", "Do not use ripped film footage or make streaming availability claims"],
+  "creative_contract": ["For each film: rank/title, setup sentence, spoiler-light turn sentence, and why-watch sentence", "Use visual beats THE SETUP, THE TURN, and WHY WATCH", "Keep the matching poster as the source anchor", "Generate 12 bounded voice segments, concatenate them, then rebuild global subtitle timing", "Require exactly 43 cues: two intro, four per film, and one CTA"],
+  "qa_contract": ["Reject builds without all 43 cues", "Inspect first-frame motion and every rank in CRV", "Verify title/poster and Thai glyphs", "Check black/freeze, silence, loudness, codec, dimensions, and complete narration", "Target about -16 LUFS"],
+  "hard_rejections": ["one-line mood-only entries", "one bulk TTS request without truncation validation", "plot spoilers beyond opening premise", "mismatched title and poster", "static opening hook", "ripped or invented film footage"],
+  "canonical_artifacts": [
+    {"repo": "openmontage", "path": "docs/recipes/patterns/thai-top10-three-sentence-synopsis-v1.json", "role": "portable recipe contract", "tracked": true},
+    {"repo": "openmontage", "path": "projects/thai-movies-ten-in-one-synopsis-poc/PATTERN.json", "role": "candidate pattern contract", "tracked": false},
+    {"repo": "openmontage", "path": "projects/thai-movies-ten-in-one-synopsis-poc/VOICE_SEGMENTS.json", "role": "bounded TTS manifest", "tracked": false},
+    {"repo": "openmontage", "path": "projects/thai-movies-ten-in-one-synopsis-poc/build_narration.py", "role": "narration builder", "tracked": false},
+    {"repo": "openmontage", "path": "projects/thai-movies-ten-in-one-synopsis-poc/build_composition.py", "role": "43-cue composition builder", "tracked": false},
+    {"repo": "openmontage", "path": "projects/thai-movies-ten-in-one-synopsis-poc/FINAL_REVIEW.md", "role": "QA evidence", "tracked": false}
+  ],
+  "reproduce": {"command": "python3 build_narration.py && python3 build_composition.py", "working_repo": "openmontage", "paid_calls": false, "notes": ["Run from projects/thai-movies-ten-in-one-synopsis-poc", "Do not replace segmented narration with a bulk TTS call", "Create a new dated candidate rather than overwriting the proof output"]},
+  "proof": {"disposition": "User requested longer 3-4 sentence coverage; this corrected build is complete but not explicitly locked as a baseline", "qa": "204.9 seconds; 43 cues; all ranks reviewed; no long black/freeze or silence; -16.2 LUFS", "output_repo": "openmontage", "output_path": "projects/thai-movies-ten-in-one-synopsis-poc/renders/thai-movies-top10-synopsis-final.mp4", "output_sha256": "650d19b8b94e78b63d0a2b3aee5c86748f8fd3a0ecb839b46468f10fbb55e2be"}
+}
