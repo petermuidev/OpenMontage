@@ -1,0 +1,14 @@
+{
+  "schema_version": "2.0",
+  "proposal_id": "sample-villa-routing",
+  "source": {"input": "local-owner-approved-villa.mp4", "role": "authorized-source", "rights_state": "owner-approved", "provenance": "Owner-approved local source; illustrative source-manifest hash", "sha256": "6f9d7d8201d3836ff22edf8e1f0d1f066b63980a4d4f84c9c993f8d269ed3d71"},
+  "inventory": {"duration_seconds": 42, "usable_intervals": [[0, 8], [13, 29]], "distinct_scenes": 7, "extractable_frames": 14, "people_faces_reflections": "limited", "text_logos": "limited", "audio": "replace", "verified_facts": ["pool", "living area", "sea view"]},
+  "reference_signal": {"hook": "immediate view", "pacing": "calm three-second beats", "shot_grammar": "wide to detail to view", "motion": "mostly real handheld motion", "overlay": "one lower third", "audio_role": "music establishes premium mood"},
+  "candidates": [
+    {"rank": 1, "kernel_id": "truthful-source-recut-v1", "treatment_id": "smooth-luxury-tour-v1", "profile_id": "vertical-short-v1", "pipeline": "hybrid", "quality_potential": "high", "truth_risk": "low", "cost_class": "local", "why": "The source already contains enough clean real motion for a truthful tour.", "gates": ["remove human-containing interval"], "likely_failures": ["handheld shake", "false spatial order"]},
+    {"rank": 2, "kernel_id": "extracted-frame-slideshow-v1", "treatment_id": "vibe-music-v1", "profile_id": "vertical-short-v1", "pipeline": "cinematic", "quality_potential": "high", "truth_risk": "low", "cost_class": "local", "why": "Fourteen distinct clean frames can support a designed music-led story.", "gates": ["frame diversity review"], "likely_failures": ["generic slideshow pacing"]},
+    {"rank": 3, "kernel_id": "clean-frame-i2v-v1", "treatment_id": "motivational-narration-v1", "profile_id": "vertical-short-v1", "pipeline": "hybrid", "quality_potential": "medium", "truth_risk": "medium", "cost_class": "provider-call", "why": "Cleaned frames could support restrained motion when the real footage is unusable.", "gates": ["owner approval for provider spend", "geometry review"], "likely_failures": ["invented view", "furniture drift"]}
+  ],
+  "selected_route": null,
+  "decision_log": ["No route selected in the example artifact."]
+}

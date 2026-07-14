@@ -1,0 +1,10 @@
+{
+  "schema_version": "2.0", "draft_id": "factual-multilingual-venue-tour-v1", "status": "draft",
+  "kernel_id": "localization-dub-v1", "treatment_id": "factual-venue-tour-v1", "profile_id": "vertical-editorial-v1", "pipeline": "localization-dub",
+  "goal": "Prove English and Chinese venue-tour variants that preserve approved meaning and show each fact when it is spoken.",
+  "source_requirements": ["approved visual master", "owner-approved factual inventory", "verified English names and Chinese translations"],
+  "creative_contract": ["arrival-context-spaces-close structure", "spoken feature appears on screen", "both languages preserve claims and CTA meaning", "no generated facility serves as evidence"],
+  "audio_contract": ["approved English and Chinese voices", "language-appropriate pacing", "music subordinate to narration", "subtitle timing follows each language"],
+  "qa_contract": ["claim-to-scene audit", "bilingual meaning review", "name and number verification", "full playback", "CRV", "independent native-language review before acceptance"],
+  "promotion_gate": ["accepted English and Chinese proof variants", "one independent reproduction on a different source"]
+}

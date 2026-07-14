@@ -1,0 +1,12 @@
+{
+  "schema_version": "2.0", "draft_id": "vibe-slideshow-v1", "status": "draft",
+  "kernel_id": "extracted-frame-slideshow-v1", "treatment_id": "vibe-music-v1", "profile_id": "vertical-short-v1", "pipeline": "cinematic",
+  "goal": "Prove that extracted real frames can become a deliberate music-led vertical story without generic slideshow pacing.",
+  "source_requirements": ["owner-approved source", "at least six distinct clean frames", "one immediate hero image"],
+  "creative_contract": ["open on a useful image within 0.3 seconds", "use six to ten distinct scenes", "motion direction follows composition", "cut rhythm follows musical phrases", "use no more than two sparse captions"],
+  "audio_contract": ["licensed or owner-approved music", "audible emotional arc", "target approximately -18 to -14 LUFS"],
+  "qa_contract": ["full playback", "start/quarter/middle/three-quarter/end CRV", "duplicate-frame audit", "mobile-safe text audit", "independent creative review"],
+  "promotion_gate": ["one accepted proof", "one independent reproduction on a different source"],
+  "portable_blueprint": "docs/recipes/v2/blueprints/vibe-slideshow-v1.md",
+  "candidate_proof": {"status": "accepted-first-proof", "output_path": "projects/vibe-slideshow-proof-02-2026-07-14/renders/vibe-slideshow-proof-02-v1.mp4", "sha256": "fb64314e140197e7b5c29f9d6d4772f8f2dc9b02f4e2ada82586536c57b5e4d2", "prior_failure_audit": "docs/recipes/v2/audits/VIBE_SLIDESHOW_PROOF_01_2026-07-14.md"}
+}

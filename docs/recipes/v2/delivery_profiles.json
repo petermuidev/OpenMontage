@@ -1,0 +1,11 @@
+{
+  "schema_version": "2.0",
+  "profiles": [
+    {"profile_id": "vertical-short-v1", "width": 1080, "height": 1920, "duration_seconds": [8, 30], "fps": 30, "uses": ["TikTok", "Reels", "Shorts"]},
+    {"profile_id": "vertical-editorial-v1", "width": 1080, "height": 1920, "duration_seconds": [30, 90], "fps": 30, "uses": ["narrated TikTok", "Reels", "Shorts"]},
+    {"profile_id": "vertical-loop-v1", "width": 1080, "height": 1920, "duration_seconds": [5, 8], "fps": 30, "uses": ["loops", "story backgrounds"]},
+    {"profile_id": "meta-feed-v1", "width": 1080, "height": 1350, "duration_seconds": [6, 30], "fps": 30, "uses": ["Meta feed"]},
+    {"profile_id": "square-feed-v1", "width": 1080, "height": 1080, "duration_seconds": [6, 30], "fps": 30, "uses": ["square feed"]},
+    {"profile_id": "landscape-story-v1", "width": 1920, "height": 1080, "duration_seconds": [15, 120], "fps": 30, "uses": ["website", "YouTube", "presentations"]}
+  ]
+}

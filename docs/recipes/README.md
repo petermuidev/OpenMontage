@@ -11,6 +11,12 @@ python3 scripts/check_media_recipe_catalog.py
 python3 scripts/check_media_recipe_catalog.py --check-local-proofs
 ```
 
+For a new URL or source that could support several different outputs, use the
+[Transformation Catalogue V2](v2/README.md) and
+`skills/meta/transformation-router.md` first. V2 selects one transformation
+kernel, one creative treatment, and one delivery profile before routing into this
+proof catalogue. It does not promote untested combinations.
+
 The second command verifies accepted output hashes when the ignored local proof
 files are present. Missing ignored proof files are reported as skips, not invented
 successes.

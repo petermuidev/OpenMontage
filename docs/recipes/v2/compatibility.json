@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0",
+  "default": "rejected",
+  "rules": [
+    {"kernel_id": "truthful-source-recut-v1", "treatments": ["vibe-music-v1", "motivational-narration-v1", "factual-venue-tour-v1", "smooth-luxury-tour-v1", "fast-beat-montage-v1", "pov-journey-v1", "countdown-listicle-v1", "interactive-choice-v1", "commercial-offer-v1", "affiliate-decision-v1"], "status": "allowed", "gates": ["requested story is visible in approved footage"]},
+    {"kernel_id": "extracted-frame-slideshow-v1", "treatments": ["vibe-music-v1", "motivational-narration-v1", "factual-venue-tour-v1", "smooth-luxury-tour-v1", "countdown-listicle-v1", "interactive-choice-v1", "commercial-offer-v1", "affiliate-decision-v1"], "status": "allowed", "gates": ["at least six distinct usable frames", "motion design avoids generic slideshow pacing"]},
+    {"kernel_id": "fullframe-clean-recaption-v1", "treatments": ["vibe-music-v1", "motivational-narration-v1", "factual-venue-tour-v1", "smooth-luxury-tour-v1", "fast-beat-montage-v1", "interactive-choice-v1", "commercial-offer-v1", "affiliate-decision-v1"], "status": "allowed", "gates": ["mask budget passes", "principal subject remains unobscured"]},
+    {"kernel_id": "clean-frame-i2v-v1", "treatments": ["vibe-music-v1", "motivational-narration-v1", "smooth-luxury-tour-v1", "fast-beat-montage-v1", "countdown-listicle-v1", "interactive-choice-v1"], "status": "allowed", "gates": ["cleaned frame and generated motion independently pass geometry review"]},
+    {"kernel_id": "clean-frame-i2v-v1", "treatments": ["factual-venue-tour-v1", "commercial-offer-v1", "affiliate-decision-v1"], "status": "conditional", "gates": ["generated-motion disclosure", "claims rely on approved source evidence rather than generated motion"]},
+    {"kernel_id": "multi-angle-i2v-v1", "treatments": ["vibe-music-v1", "motivational-narration-v1", "smooth-luxury-tour-v1", "fast-beat-montage-v1"], "status": "allowed", "gates": ["at least five independently accepted source-grounded shots"]},
+    {"kernel_id": "multi-angle-i2v-v1", "treatments": ["factual-venue-tour-v1", "commercial-offer-v1"], "status": "conditional", "gates": ["generated-motion disclosure", "no generated scene is evidence for a material claim"]},
+    {"kernel_id": "multi-source-editorial-v1", "treatments": ["vibe-music-v1", "motivational-narration-v1", "factual-venue-tour-v1", "fast-beat-montage-v1", "countdown-listicle-v1", "interactive-choice-v1", "affiliate-decision-v1"], "status": "allowed", "gates": ["every source has provenance", "facts and ordering are reviewable"]},
+    {"kernel_id": "localization-dub-v1", "treatments": ["motivational-narration-v1", "factual-venue-tour-v1", "countdown-listicle-v1", "commercial-offer-v1", "affiliate-decision-v1"], "status": "allowed", "gates": ["approved visual master exists", "names and claims preserve meaning"]}
+  ]
+}

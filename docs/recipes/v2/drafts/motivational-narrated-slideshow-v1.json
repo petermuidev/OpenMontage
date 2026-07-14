@@ -1,0 +1,10 @@
+{
+  "schema_version": "2.0", "draft_id": "motivational-narrated-slideshow-v1", "status": "draft",
+  "kernel_id": "extracted-frame-slideshow-v1", "treatment_id": "motivational-narration-v1", "profile_id": "vertical-short-v1", "pipeline": "cinematic",
+  "goal": "Prove a short emotional story whose every spoken sentence has a supporting real visual.",
+  "source_requirements": ["owner-approved source", "at least six distinct clean frames", "visuals capable of supporting one specific emotional thesis"],
+  "creative_contract": ["one specific thesis", "hook-development-landing structure", "sentence-to-scene map before TTS", "no repeated scene used only to fill narration", "captions match spoken meaning"],
+  "audio_contract": ["approved TTS voice", "music subordinate to narration", "natural pauses determine cut points", "target narration-led mix near -16 LUFS"],
+  "qa_contract": ["sentence-to-scene coverage audit", "transcript and subtitle comparison", "full playback", "CRV", "independent story and audio review"],
+  "promotion_gate": ["one accepted proof", "one independent reproduction on a different source"]
+}

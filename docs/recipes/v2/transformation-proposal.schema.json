@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmontage.local/schemas/transformation-proposal-v2.json",
+  "title": "OpenMontage transformation proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "proposal_id", "source", "inventory", "reference_signal", "candidates", "selected_route", "decision_log"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "proposal_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input", "role", "rights_state", "provenance", "sha256"],
+      "properties": {
+        "input": {"type": "string", "minLength": 1},
+        "role": {"enum": ["reference", "authorized-source", "reference-with-separate-sources"]},
+        "rights_state": {"enum": ["reference-only", "owner-approved", "licensed", "unresolved"]},
+        "provenance": {"type": "string", "minLength": 1},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration_seconds", "usable_intervals", "distinct_scenes", "extractable_frames", "people_faces_reflections", "text_logos", "audio", "verified_facts"],
+      "properties": {
+        "duration_seconds": {"type": "number", "minimum": 0},
+        "usable_intervals": {"type": "array", "items": {"type": "array", "prefixItems": [{"type": "number"}, {"type": "number"}], "minItems": 2, "maxItems": 2}},
+        "distinct_scenes": {"type": "integer", "minimum": 0},
+        "extractable_frames": {"type": "integer", "minimum": 0},
+        "people_faces_reflections": {"enum": ["none", "limited", "dominant", "unknown"]},
+        "text_logos": {"enum": ["none", "limited", "dominant", "unknown"]},
+        "audio": {"enum": ["usable", "replace", "none", "unknown"]},
+        "verified_facts": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "reference_signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hook", "pacing", "shot_grammar", "motion", "overlay", "audio_role"],
+      "properties": {
+        "hook": {"type": "string"}, "pacing": {"type": "string"}, "shot_grammar": {"type": "string"},
+        "motion": {"type": "string"}, "overlay": {"type": "string"}, "audio_role": {"type": "string"}
+      }
+    },
+    "candidates": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["rank", "kernel_id", "treatment_id", "profile_id", "pipeline", "quality_potential", "truth_risk", "cost_class", "why", "gates", "likely_failures"],
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1, "maximum": 3},
+          "kernel_id": {"type": "string"}, "treatment_id": {"type": "string"}, "profile_id": {"type": "string"}, "pipeline": {"type": "string"},
+          "quality_potential": {"enum": ["low", "medium", "high"]}, "truth_risk": {"enum": ["low", "medium", "high"]},
+          "cost_class": {"enum": ["local", "local-or-tts", "provider-call", "provider-batch"]},
+          "why": {"type": "string", "minLength": 1},
+          "gates": {"type": "array", "items": {"type": "string"}},
+          "likely_failures": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "selected_route": {"type": ["integer", "null"], "minimum": 1, "maximum": 3},
+    "decision_log": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"source": {"properties": {"role": {"enum": ["authorized-source", "reference-with-separate-sources"]}}}}
+      },
+      "then": {
+        "properties": {"source": {"properties": {"sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}
+      }
+    }
+  ]
+}

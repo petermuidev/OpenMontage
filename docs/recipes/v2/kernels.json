@@ -1,0 +1,89 @@
+{
+  "schema_version": "2.0",
+  "kernels": [
+    {
+      "kernel_id": "truthful-source-recut-v1",
+      "title": "Truthful source-footage recut",
+      "source_modes": ["authorized-source"],
+      "pipeline": "hybrid",
+      "best_for": ["clean real motion", "smooth tours", "beat-led montages"],
+      "avoid_when": ["the footage cannot support the requested story", "human removal would require reconstructing moving scenes"],
+      "required_capabilities": ["scene_detect", "frame_sampler", "video_compose", "audio_mixer"],
+      "truth_risk": "low",
+      "cost_class": "local",
+      "recipe_refs": ["tiktok-source-reframes-v1", "fullframe-source-subtitle-blur-v1"]
+    },
+    {
+      "kernel_id": "extracted-frame-slideshow-v1",
+      "title": "Extracted-frame designed slideshow",
+      "source_modes": ["authorized-source"],
+      "pipeline": "cinematic",
+      "best_for": ["strong still moments inside weak or limited motion", "music-led and narrated frame stories"],
+      "avoid_when": ["fewer than six meaningfully different usable frames", "the intended result requires continuous documentary motion"],
+      "required_capabilities": ["frame_sampler", "video_compose", "audio_mixer"],
+      "truth_risk": "low",
+      "cost_class": "local",
+      "recipe_refs": []
+    },
+    {
+      "kernel_id": "fullframe-clean-recaption-v1",
+      "title": "Full-frame subtitle cleanup and recaption",
+      "source_modes": ["authorized-source"],
+      "pipeline": "hybrid",
+      "best_for": ["preserving vertical framing while replacing burned-in text", "music-led recaptioned venue footage"],
+      "avoid_when": ["the cleanup mask covers the principal subject", "more than 20 percent of the frame requires concealment"],
+      "required_capabilities": ["video_compose", "audio_mixer"],
+      "truth_risk": "low",
+      "cost_class": "local",
+      "recipe_refs": ["fullframe-source-subtitle-blur-v1"]
+    },
+    {
+      "kernel_id": "clean-frame-i2v-v1",
+      "title": "Clean approved frame then animate",
+      "source_modes": ["authorized-source"],
+      "pipeline": "hybrid",
+      "best_for": ["human or text removal from selected frames", "adding restrained motion to approved real scenes"],
+      "avoid_when": ["the edit must prove an exact changing condition", "the provider cannot preserve scene geometry"],
+      "required_capabilities": ["frame_sampler", "image_edit", "image_to_video", "video_compose"],
+      "truth_risk": "medium",
+      "cost_class": "provider-call",
+      "recipe_refs": ["url-to-clean-i2v-v1"]
+    },
+    {
+      "kernel_id": "multi-angle-i2v-v1",
+      "title": "Reviewed multi-angle image-to-video assembly",
+      "source_modes": ["authorized-source"],
+      "pipeline": "hybrid",
+      "best_for": ["five-to-eight approved venue angles", "new reels built from independently accepted generated-motion shots"],
+      "avoid_when": ["fewer than five truthful angles exist", "generated scenes would be presented as exact documentary proof"],
+      "required_capabilities": ["frame_sampler", "image_edit", "image_to_video", "video_compose", "audio_mixer"],
+      "truth_risk": "high",
+      "cost_class": "provider-batch",
+      "recipe_refs": ["grok-multi-angle-shot-factory-v1"]
+    },
+    {
+      "kernel_id": "multi-source-editorial-v1",
+      "title": "Multi-source editorial assembly",
+      "source_modes": ["authorized-source", "reference-with-separate-sources"],
+      "pipeline": "cinematic",
+      "best_for": ["rankings", "recommendations", "comparisons", "destination stories"],
+      "avoid_when": ["source rights or factual citations are unresolved", "the narrative lacks enough distinct visual evidence"],
+      "required_capabilities": ["video_analyzer", "frame_sampler", "video_compose", "audio_mixer"],
+      "truth_risk": "medium",
+      "cost_class": "local-or-tts",
+      "recipe_refs": ["thai-film-one-thesis-editorial-v1", "thai-top10-three-sentence-synopsis-v1"]
+    },
+    {
+      "kernel_id": "localization-dub-v1",
+      "title": "Localized narration and subtitle variant",
+      "source_modes": ["authorized-source"],
+      "pipeline": "localization-dub",
+      "best_for": ["English, Thai, or Chinese versions of an approved visual master", "replacing narration while preserving meaning"],
+      "avoid_when": ["names, claims, or translation cannot be verified", "the source timing cannot support the translated script"],
+      "required_capabilities": ["transcriber", "tts_selector", "subtitle_gen", "video_compose", "audio_mixer"],
+      "truth_risk": "medium",
+      "cost_class": "local-or-tts",
+      "recipe_refs": []
+    }
+  ]
+}
