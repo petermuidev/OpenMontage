@@ -34,6 +34,12 @@ A rendered video is not automatically a reusable recipe. Technical QA proves the
 file works; owner or independent creative review proves the pattern is worth
 repeating.
 
+Provider availability and creative acceptance are separate facts. A CLI can be
+fully capable of image editing and image-to-video while a particular output still
+fails for invented scenery, geometry drift, weak reference fidelity, or intrusive
+cleanup. Record both verdicts; never promote a capability smoke test as a creative
+baseline.
+
 ## Adapt, Do Not Clone Blindly
 
 A recipe is a reusable decision contract, not an immutable edit template. Agents
@@ -42,6 +48,26 @@ available production tool to the source and business situation. They must preser
 the recipe's intended outcome, rights and provenance checks, factual-claim limits,
 hard rejections, and QA bar. An accepted proof video shows that the pattern worked
 once; it does not require future work to look identical.
+
+## Reference URL Versus Source URL
+
+Classify the URL before selecting a recipe:
+
+- **Reference URL:** analyze its hook, shot grammar, motion, pacing, overlays, and
+  audio role. Select a recipe that can reproduce those useful qualities with
+  separately approved source media. Do not choose a source-cleaning recipe merely
+  because the approved source contains text or people.
+- **Source URL:** when the owner authorizes transforming that footage, route through
+  `url-to-clean-i2v-v1`, a source-recut recipe, or another source-grounded contract.
+
+For reference-driven work, write a fidelity matrix before production: which
+reference qualities are intentionally retained, which are changed, and why. A
+technically correct output fails if it misses the chosen reference qualities.
+
+Do not route to `fullframe-source-subtitle-blur-v1` when hiding source text would
+require large censorship bands over architecture or the principal subject. Choose
+cleaner intervals, a clean approved source, precise cleanup/inpainting, or a
+cleaned-frame I2V route instead.
 
 ## Catalog Summary
 

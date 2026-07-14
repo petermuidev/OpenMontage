@@ -13,6 +13,7 @@
     "the source aspect ratio does not match the delivery and reframing is required",
     "a presenter, face, or reflection remains in every usable interval",
     "source text crosses a moving subject and cannot be covered with a narrow tracked mask",
+    "the combined blur masks cover more than 20 percent of a frame or obscure the principal architecture",
     "true object removal or scene reconstruction is required"
   ],
   "source_contract": [
@@ -20,11 +21,13 @@
     "Inspect the complete source with CRV, one-second contact sheets, and exact boundary frames",
     "Select only human-free intervals and recheck faces and reflections at both boundaries",
     "Map each burned-in title and subtitle region per shot instead of assuming one global mask",
+    "Measure each proposed blur mask and reject the route when combined mask area exceeds 20 percent of the delivery frame",
     "Use licensed music and remove all original source audio"
   ],
   "creative_contract": [
     "Scale the complete original 9:16 frame directly to 1080x1920 without cropping, background fill, or invented scenery",
     "Use narrow per-shot tracked blur masks over only the original title and subtitle regions",
+    "Prefer excluding a shot or using precise cleanup over hiding a central subject with blur",
     "Add concise replacement subtitles on a readable editorial card inside mobile-safe margins",
     "Build a smooth multi-shot sequence from approximately three-second scenes with short dissolves",
     "Limit copy to visible property facts and mood; do not invent facilities, price, availability, or performance claims",
@@ -33,6 +36,7 @@
   "qa_contract": [
     "Verify source_frame_crop is false and the full original 9:16 frame is visible",
     "Review the first and last frames of every shot to ensure source text does not escape a moving mask",
+    "Record per-shot mask area ratios and reject any frame whose combined blur exceeds 20 percent or covers the principal subject",
     "Reject any visible presenter, face, reflection, original title, or original subtitle",
     "Run full-playback review plus CRV sampled-frame review after the final encode",
     "Require 1080x1920 H.264 yuv420p at 30 fps with AAC audio and no black segments",
@@ -41,6 +45,7 @@
   "hard_rejections": [
     "cropped foreground or blurred background fill described as full-frame preservation",
     "a broad blur block that hides meaningful room or architectural detail",
+    "multiple blur bands that technically hide text but dominate the composition",
     "original title or subtitle characters visible outside the tracked mask",
     "a presenter, face, or reflection retained in a selected shot",
     "original speech or source audio retained",

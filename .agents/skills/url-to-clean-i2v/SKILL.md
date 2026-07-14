@@ -107,6 +107,12 @@ Watch the whole sample and inspect start, 25%, 50%, 75%, and end frames. Reject:
 The generated motion is a creative POC, not evidence that the operator or place
 behaved that way.
 
+Treat provider or worker `PASS_WITH_NOTES` as FAIL whenever a note matches one of
+the rejection conditions above. Record tool execution separately from creative
+acceptance: a provider can prove that image-to-video is callable while its output
+still fails the source-grounded tourism contract. Do not soften an invented
+horizon object, furniture morph, or changed facility to “minor” for promotion.
+
 ## Lock the reusable recipe
 
 For each accepted pattern, save:
