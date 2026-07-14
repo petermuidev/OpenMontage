@@ -15,10 +15,12 @@ The second command verifies accepted output hashes when the ignored local proof
 files are present. Missing ignored proof files are reported as skips, not invented
 successes.
 
-Every recipe records one concrete successful video path and SHA-256. Video files
-remain in ignored local proof stores and are never committed. The portable recipe
-records, schema, validation, and agent/build instructions are committed. See
-[`ARTIFACT_POLICY.md`](ARTIFACT_POLICY.md).
+Every recipe records one concrete proof-video path and SHA-256. Accepted records
+must point to successful proof; `reference-only` records may point to an explicitly
+rejected experiment when that failure is the evidence controlling future routing.
+Video files remain in ignored local proof stores and are never committed. The
+portable recipe records, schema, validation, and agent/build instructions are
+committed. See [`ARTIFACT_POLICY.md`](ARTIFACT_POLICY.md).
 
 ## Status Means
 
@@ -71,14 +73,14 @@ cleaned-frame I2V route instead.
 
 ## Catalog Summary
 
-As of 2026-07-14, the catalog contains **10 top-level recipes**:
+As of 2026-07-14, the catalog contains **11 top-level recipes**:
 
 | Class | Count | Meaning |
 |---|---:|---|
 | Accepted baselines | 3 | Locked proof outputs that control matching production |
 | Accepted patterns | 3 | Reusable workflows with source-specific adaptation |
 | Proven candidates | 1 | Complete, awaiting an explicit owner lock |
-| Reference-only | 2 | Useful evidence, not a production route yet |
+| Reference-only | 3 | Useful evidence, not a production route yet |
 | Superseded | 1 | Preserved history; route to its successor |
 
 That gives agents **6 production-routable recipes** today. There are also **11 named
@@ -92,6 +94,7 @@ again as top-level recipes.
 |---|---|---|
 | Ten commercial still/video formats for villas, tours, diving, food, and Samui | `face-showcase-2026-07-12` | accepted baseline |
 | Owner supplies a URL; extract, remove people/text/objects, then animate | `url-to-clean-i2v-v1` | accepted pattern |
+| Plan five-to-eight source-grounded angles, use Grok as a bounded shot worker, then assemble only accepted shots | `grok-multi-angle-shot-factory-v1` | reference only |
 | Preserve a full vertical source frame, blur burned-in text, recaption, and add vibe music | `fullframe-source-subtitle-blur-v1` | accepted pattern |
 | Short face-free, multi-shot narrated Samui reel | `samui-motivation-multishot-v1` | accepted baseline |
 | Sound-off “choose 1-4” engagement post | `engagement-four-choice-v1` | accepted pattern |
@@ -101,6 +104,11 @@ again as top-level recipes.
 The direct TikTok recut and three-format vibe experiments remain reference-only
 because their QA reports still say visual review is pending. The short top-ten mood
 picker is preserved as a specialized variant but superseded for synopsis requests.
+
+The Grok multi-angle factory is also reference-only. Native cleanup and I2V calls
+are available, but the first motion sample invented a horizon object. Its hybrid
+architecture is locked for the next proof: OpenMontage plans and composes; Grok
+cleans and animates one reviewed shot at a time.
 
 ## Universal Reproduction Rules
 

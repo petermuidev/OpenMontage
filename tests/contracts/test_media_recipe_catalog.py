@@ -16,7 +16,7 @@ def test_media_recipe_catalog_contract() -> None:
         text=True,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "10 media recipes validated" in result.stdout
+    assert "11 media recipes validated" in result.stdout
 
 
 def test_every_recipe_names_a_hashed_video_proof() -> None:
