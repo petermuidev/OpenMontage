@@ -79,8 +79,8 @@ As of 2026-07-14, the catalog contains **11 top-level recipes**:
 |---|---:|---|
 | Accepted baselines | 3 | Locked proof outputs that control matching production |
 | Accepted patterns | 3 | Reusable workflows with source-specific adaptation |
-| Proven candidates | 1 | Complete, awaiting an explicit owner lock |
-| Reference-only | 3 | Useful evidence, not a production route yet |
+| Proven candidates | 2 | Complete, awaiting an explicit owner lock |
+| Reference-only | 2 | Useful evidence, not a production route yet |
 | Superseded | 1 | Preserved history; route to its successor |
 
 That gives agents **6 production-routable recipes** today. There are also **11 named
@@ -94,7 +94,7 @@ again as top-level recipes.
 |---|---|---|
 | Ten commercial still/video formats for villas, tours, diving, food, and Samui | `face-showcase-2026-07-12` | accepted baseline |
 | Owner supplies a URL; extract, remove people/text/objects, then animate | `url-to-clean-i2v-v1` | accepted pattern |
-| Plan five-to-eight source-grounded angles, use Grok as a bounded shot worker, then assemble only accepted shots | `grok-multi-angle-shot-factory-v1` | reference only |
+| Plan five-to-eight source-grounded angles, use Grok as a bounded shot worker, then assemble only accepted shots | `grok-multi-angle-shot-factory-v1` | proven candidate |
 | Preserve a full vertical source frame, blur burned-in text, recaption, and add vibe music | `fullframe-source-subtitle-blur-v1` | accepted pattern |
 | Short face-free, multi-shot narrated Samui reel | `samui-motivation-multishot-v1` | accepted baseline |
 | Sound-off “choose 1-4” engagement post | `engagement-four-choice-v1` | accepted pattern |
@@ -105,10 +105,11 @@ The direct TikTok recut and three-format vibe experiments remain reference-only
 because their QA reports still say visual review is pending. The short top-ten mood
 picker is preserved as a specialized variant but superseded for synopsis requests.
 
-The Grok multi-angle factory is also reference-only. Native cleanup and I2V calls
-are available, but the first motion sample invented a horizon object. Its hybrid
-architecture is locked for the next proof: OpenMontage plans and composes; Grok
-cleans and animates one reviewed shot at a time.
+The Grok multi-angle factory is now a proven candidate. Its first complete reel
+accepted five source-grounded angles from eight creative attempts and rejected
+three drifting shots. OpenMontage plans and composes; Grok cleans and animates one
+reviewed shot at a time. It still requires explicit owner acceptance before it
+becomes an accepted production pattern or baseline.
 
 ## Universal Reproduction Rules
 

@@ -393,6 +393,11 @@ class VideoCompose(BaseTool):
             except (ImportError, ValueError):
                 pass
 
+        try:
+            target_width, target_height = (int(value) for value in resolution.split("x", 1))
+        except (TypeError, ValueError):
+            target_width, target_height = 1920, 1080
+
         cuts = edit_decisions.get("cuts", [])
         if not cuts:
             return ToolResult(success=False, error="No cuts in edit_decisions")
@@ -468,14 +473,12 @@ class VideoCompose(BaseTool):
                     # pix_fmt / sar across ALL segments — otherwise it throws
                     # "Non-monotonous DTS" or silently produces corrupt output.
                     #
-                    # Default target is 1920x1080 @ 30fps, yuv420p, sar=1. If the
-                    # source is smaller it letterboxes; if larger it downscales.
-                    # Callers can override via edit_decisions.metadata.compose_target
-                    # (future extension) but the defaults match the most common
-                    # delivery profile (YouTube landscape).
+                    # Normalize to the selected media profile. Without this,
+                    # vertical inputs were first letterboxed into 1920x1080 and
+                    # then stretched back to 1080x1920 at final encode.
                     vf_parts: list[str] = [
-                        "scale=1920:1080:force_original_aspect_ratio=decrease",
-                        "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black",
+                        f"scale={target_width}:{target_height}:force_original_aspect_ratio=decrease",
+                        f"pad={target_width}:{target_height}:(ow-iw)/2:(oh-ih)/2:color=black",
                         "setsar=1",
                         "fps=30",
                     ]

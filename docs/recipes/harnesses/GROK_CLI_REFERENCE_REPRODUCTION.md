@@ -41,6 +41,14 @@ For a source-grounded cleanup/I2V test, use one approved extracted frame first:
 3. `image_to_video`: generate one 6-second restrained motion sample.
 4. Review start, quarter, middle, three-quarter, and end frames before batching.
 
+For multi-angle work, "sequential" is an orchestration rule, not wording inside
+one worker prompt. Invoke one chargeable media generation per headless CLI run,
+wait for its artifact or confirmed failure, run the shot review gate, and only
+then submit the next angle. Do not place several `image_to_video` requests in one
+worker task: the worker may parallelize them and trigger provider capacity limits.
+Rate-limited requests that produced no media do not count as creative attempts,
+but they must be recorded as harness failures.
+
 ## Mask budget
 
 For deterministic subtitle-blur routes, calculate the combined mask area per

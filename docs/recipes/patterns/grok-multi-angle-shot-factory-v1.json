@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "recipe_id": "grok-multi-angle-shot-factory-v1",
   "title": "OpenMontage-planned Grok multi-angle shot factory",
-  "status": "reference-only",
+  "status": "proven-candidate",
   "lane": "source-transformation",
   "best_for": [
     "turning owner-approved villa or tour footage into a new 15-30 second reel assembled from five to eight independently accepted angles",
@@ -28,7 +28,8 @@
     "Use Grok CLI consumer-session image_edit to remove only named people, source text, logos, or unwanted objects while preserving architecture, pool edges, furniture, materials, perspective, lighting, crop, and view",
     "Approve each cleaned frame at full resolution before calling image_to_video",
     "Generate one 3-5 second 720p motion sample per approved frame with one restrained camera move and one restrained natural motion",
-    "Generate shots sequentially; do not batch unreviewed angles or ask Grok to create the complete reel in one prompt",
+    "Enforce sequential shots structurally: invoke one chargeable media generation per headless CLI run, review its artifact, then submit the next angle; prompt-only instructions are insufficient",
+    "Do not batch unreviewed angles or ask Grok to create the complete reel in one prompt",
     "Require five to eight accepted angles such as arrival, living area, bedroom, bathroom, pool, dining area, view, and closing hero only when those facts exist in approved sources",
     "Assemble only independently accepted shots through the proposal-approved OpenMontage composition runtime",
     "Use immediate visual coverage, purposeful shot order, licensed music, optional truthful narration, sparse mobile-safe captions, and an explicit POC marker"
@@ -49,6 +50,7 @@
     "a cleaned frame advances to motion before full-resolution review",
     "an invented horizon object, facility, view, furniture item, or geometry change is dismissed as minor",
     "a technical tool-capability PASS is reported as creative acceptance",
+    "a worker receives multiple chargeable image-to-video calls in one headless task",
     "more than ten motion attempts are used to obtain the first five accepted shots",
     "an unavailable Grok surface silently falls back to another provider or a still animation",
     "generated motion is represented as documentary evidence of the real operator or property",
@@ -75,6 +77,12 @@
     },
     {
       "repo": "openmontage",
+      "path": "docs/recipes/audits/GROK_MULTI_ANGLE_FACTORY_2026-07-14.md",
+      "role": "first complete multi-angle production proof and failure accounting",
+      "tracked": true
+    },
+    {
+      "repo": "openmontage",
       "path": ".agents/skills/url-to-clean-i2v/SKILL.md",
       "role": "source cleanup and motion QA contract",
       "tracked": true
@@ -91,18 +99,18 @@
     "working_repo": "openmontage",
     "paid_calls": true,
     "notes": [
-      "This is an experimental recipe, not a production default",
+      "This is a proven candidate awaiting owner acceptance, not yet a production default",
       "Use pipeline_defs/hybrid.yaml, run OpenMontage preflight, and obtain owner approval before Grok media calls",
       "Record the consumer-session allowance as unknown when the CLI does not expose per-generation cost",
       "Present available Remotion and HyperFrames composition options before locking the final runtime",
-      "Do not promote until one complete five-to-eight-angle reel passes independent review"
+      "The first five-angle reel passed independent review; owner acceptance is still required before accepted-pattern or baseline promotion"
     ]
   },
   "proof": {
-    "disposition": "Component capability proven; full multi-angle recipe not yet creatively accepted",
-    "qa": "Grok CLI image_edit passed on the corrective courtyard frame, while the corresponding I2V failed independent source-grounded QA because it introduced a horizon object and furniture drift",
+    "disposition": "Complete five-angle reel passed independent technical and creative review; awaiting explicit owner acceptance",
+    "qa": "Five source-grounded angles accepted from eight creative I2V attempts; three defective shots rejected; final 15.03-second 1080x1920 H.264/AAC reel passed CRV, boundary, geometry, text, audio, and black-frame review",
     "output_repo": "openmontage",
-    "output_path": "projects/grok-cli-trulyworthit-reproduction-poc/outputs/grok-native-clean-courtyard-i2v-6s-v1.mp4",
-    "output_sha256": "9fb1924fdba616b27fa343d65c5272fc6e80dc74b2a51c723148507bb82d920d"
+    "output_path": "projects/grok-multi-angle-villa-poc/renders/grok-multi-angle-villa-final.mp4",
+    "output_sha256": "193b77f7ad8fb987a61043125ffd5ba68372e4f6d99fdaecc24d8fddeab53219"
   }
 }
