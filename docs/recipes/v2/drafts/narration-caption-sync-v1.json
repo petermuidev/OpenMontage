@@ -1,0 +1,40 @@
+{
+  "schema_version": "2.0",
+  "draft_id": "narration-caption-sync-v1",
+  "status": "draft",
+  "kernel_id": "truthful-source-recut-v1",
+  "treatment_id": "smooth-luxury-tour-v1",
+  "profile_id": "vertical-short-v1",
+  "pipeline": "hybrid",
+  "goal": "Turn approved source video into a scene-matched narrated or music-led vertical edit with reproducible voice choice and captions timed from actual audio.",
+  "source_requirements": [
+    "owner-approved source or explicit reusable rights",
+    "source inventory covering scenes, faces, logos, burned-in text and usable segments",
+    "at least four meaningful visual beats for a narrated short"
+  ],
+  "creative_contract": [
+    "choose automatic, uploaded, music-only or silent mode explicitly",
+    "for automatic mode shortlist no more than three voices and approve a preview",
+    "map every narration sentence to a supporting source scene before synthesis",
+    "do not use narration to claim facilities, prices, availability or facts not visible or approved",
+    "preserve natural pacing; do not accelerate footage merely to fit the script"
+  ],
+  "audio_contract": [
+    "record provider, voice id, language, tone and rate",
+    "transcribe the actual final narration for caption timing",
+    "music remains subordinate to speech and the final narration-led mix targets about -16 LUFS",
+    "an unavailable selected voice blocks rather than silently switching provider"
+  ],
+  "qa_contract": [
+    "complete playback",
+    "sentence-to-scene coverage audit",
+    "script-to-transcript comparison",
+    "caption safe-area and glyph review",
+    "source-face and burned-in-text review",
+    "technical probe plus independent creative review"
+  ],
+  "promotion_gate": [
+    "one accepted owner-reviewed proof",
+    "one independent agent reproduction using only this recipe and its bounded packet"
+  ]
+}

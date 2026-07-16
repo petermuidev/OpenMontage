@@ -142,6 +142,20 @@ Owner quality rule: prefer HappyHorse for hero shots, visible camera motion,
 and standalone clips. Prefer Wan Flash only for economical still-animation
 layers inside a larger composition.
 
+### Azure Speech — Selectable Multilingual TTS
+
+Set `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION`. These are Speech credentials,
+not Azure OpenAI credentials. `azure_speech_tts` calls the regional
+`/cognitiveservices/v1` REST endpoint with SSML.
+
+Azure is one selectable narration provider, never a global language default.
+Use `tts_selector` with `operation=select` to shortlist at most three compatible
+voices, generate a bounded preview, and record the explicit owner-selected
+voice before full synthesis. The current owner truth inventory has a successful
+Thai probe for `th-TH-PremwadeeNeural`; other catalog voices remain candidates
+until previewed. Account pricing is not encoded as zero-cost, so Azure calls
+remain behind the normal paid-provider approval gate.
+
 ---
 
 ### fal.ai — Multi-Model Gateway

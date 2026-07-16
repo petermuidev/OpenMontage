@@ -76,10 +76,16 @@ class TTSSelector(BaseTool):
             },
             "operation": {
                 "type": "string",
-                "enum": ["generate", "rank"],
+                "enum": ["generate", "rank", "catalog", "select"],
                 "default": "generate",
-                "description": "Operation mode. 'rank' returns scored provider rankings without generating.",
+                "description": "Catalog and select never generate audio. Generate requires an explicit selected_voice_id when supplied by the voice chooser.",
             },
+            "language": {"type": "string", "description": "BCP-47 narration language, e.g. en-US, th-TH, zh-CN."},
+            "gender": {"type": "string", "enum": ["female", "male", "neutral"]},
+            "tone": {"type": "string", "description": "Desired delivery tone such as warm, luxury, documentary, or commercial."},
+            "selected_voice_id": {"type": "string", "description": "Voice ID selected after preview/owner choice."},
+            "speaking_rate": {"type": "number", "minimum": 0.5, "maximum": 2.0, "default": 1.0},
+            "volume": {"type": "number", "minimum": 0.5, "maximum": 2.0, "default": 1.0},
             "output_path": {"type": "string"},
         },
     }
@@ -119,12 +125,52 @@ class TTSSelector(BaseTool):
 
     def execute(self, inputs: dict[str, Any]) -> ToolResult:
         from lib.scoring import rank_providers
+        from tools.audio.voice_catalog import rank_voice_options, voice_options
 
         task_context = self._prepare_task_context(inputs)
         candidates = self._providers()
 
+        availability = {
+            tool.name: tool.get_status() == ToolStatus.AVAILABLE for tool in candidates
+        }
+        operation = inputs.get("operation", "generate")
+        if operation in {"catalog", "select"}:
+            provider_filter = inputs.get("preferred_provider")
+            if provider_filter == "auto":
+                provider_filter = None
+            options = voice_options(
+                language=inputs.get("language"),
+                gender=inputs.get("gender"),
+                provider=provider_filter,
+            )
+            ranked = rank_voice_options(
+                options,
+                language=inputs.get("language"),
+                gender=inputs.get("gender"),
+                tone=inputs.get("tone"),
+                availability=availability,
+            )
+            serialized = [
+                option.to_dict(available=availability.get(option.tool_name, False))
+                for option in ranked
+            ]
+            if operation == "catalog":
+                return ToolResult(success=True, data={"voices": serialized, "count": len(serialized)})
+
+            selected_id = str(inputs.get("selected_voice_id") or "")
+            selected = next((item for item in serialized if item["selection_id"] == selected_id), None)
+            return ToolResult(
+                success=True,
+                data={
+                    "shortlist": serialized[:3],
+                    "selected": selected,
+                    "requires_owner_selection": selected is None,
+                    "next_action": "preview one shortlisted voice, then submit selected_voice_id before generation" if selected is None else "generate a bounded preview with the selected voice",
+                },
+            )
+
         # Rank mode — return scored provider rankings without generating
-        if inputs.get("operation") == "rank":
+        if operation == "rank":
             rankings = rank_providers(candidates, task_context)
             return ToolResult(
                 success=True,
@@ -134,6 +180,38 @@ class TTSSelector(BaseTool):
                     "normalized_task_context": task_context,
                 },
             )
+
+        # Normal generation — honor the selected catalog voice and its provider.
+        selected_voice_id = str(inputs.get("selected_voice_id") or "")
+        if selected_voice_id:
+            matches = [option for option in voice_options() if option.selection_id == selected_voice_id]
+            if not matches:
+                return ToolResult(success=False, error=f"Unknown selected voice: {selected_voice_id}")
+            selected = matches[0]
+            preferred = inputs.get("preferred_provider", "auto")
+            if preferred not in {"auto", selected.provider}:
+                return ToolResult(
+                    success=False,
+                    error=f"Selected voice {selected_voice_id} belongs to {selected.provider}, not {preferred}",
+                )
+            inputs = dict(inputs)
+            inputs["preferred_provider"] = selected.provider
+            inputs[selected.input_field] = selected.voice_id
+            if selected.input_field == "voice_id":
+                inputs.setdefault("voice", selected.voice_id)
+            if selected.language != "multi":
+                inputs.setdefault("language", selected.language)
+                inputs.setdefault("language_code", selected.language)
+
+            selected_tool = next((tool for tool in candidates if tool.name == selected.tool_name), None)
+            if selected_tool is None or selected_tool.get_status() != ToolStatus.AVAILABLE:
+                return ToolResult(
+                    success=False,
+                    error=(
+                        f"Selected voice {selected_voice_id} is unavailable because "
+                        f"provider {selected.provider} is not configured; no substitute was executed"
+                    ),
+                )
 
         # Normal generation — use scored selection
         tool, score = self._select_best_tool(inputs, candidates, task_context)
@@ -179,6 +257,7 @@ class TTSSelector(BaseTool):
             for score_item in rankings:
                 if score_item.provider == preferred and score_item.provider in tool_by_provider:
                     return tool_by_provider[score_item.provider], score_item
+            return None, None
 
         for score_item in rankings:
             if score_item.provider in tool_by_provider:
