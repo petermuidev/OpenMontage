@@ -27,3 +27,23 @@ def test_every_recipe_names_a_hashed_video_proof() -> None:
         assert proof["output_repo"] in {"openmontage", "face"}
         assert proof["output_path"].lower().endswith((".mp4", ".mov", ".webm"))
         assert len(proof["output_sha256"]) == 64
+
+
+def test_fullframe_cleanup_recipe_requires_dense_independent_review() -> None:
+    recipe = json.loads(
+        (
+            ROOT
+            / "docs/recipes/patterns/fullframe-source-subtitle-blur-v1.json"
+        ).read_text()
+    )
+    contract = " ".join(
+        recipe["source_contract"]
+        + recipe["creative_contract"]
+        + recipe["qa_contract"]
+    ).lower()
+    assert "0.5 seconds" in contract
+    assert "union of masked pixels" in contract
+    assert "global mask" in contract
+    assert "0.8x and 1.35x" in contract
+    assert "reviewer distinct from the producing worker" in contract
+    assert "sparse midpoint" in contract

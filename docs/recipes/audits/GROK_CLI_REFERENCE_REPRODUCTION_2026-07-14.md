@@ -69,3 +69,23 @@ approved owner media.
   experiments, but require independent review for every generated shot.
 - Do not batch Grok I2V for truthful villa/tour inventory until a new bounded
   sample passes without invented objects, views, or geometry drift.
+
+## 2026-07-16 Grok 4.5 reproduction addendum
+
+Grok 4.5 subsequently completed a real six-shot narrated composition at:
+
+```text
+projects/grok-voice-selector-reframe-poc/renders/grok-samui-voice-reframe-v2.mp4
+```
+
+The technical artifact passes (1080x1920 H.264/yuv420p at 30 fps, AAC, 21.20
+seconds, -16.3 LUFS, no people, and no source glyphs across the final 42-frame
+dense review). It is **not** promoted as a creative recipe proof: the selected
+source requires a 23.77% maximum blur-mask union, exceeding the accepted recipe's
+20% ceiling. This is a real executed-video proof and a real recipe-routing
+failure, not a Grok availability failure.
+
+The correction hardened the harness: source and final inspection now use samples
+no wider than 0.5 seconds plus exact boundaries/transitions; global mask reuse is
+forbidden; moving text needs tracked/time-bounded masks; time remap is limited to
+0.8x-1.35x; render success remains pending until a distinct reviewer decides.

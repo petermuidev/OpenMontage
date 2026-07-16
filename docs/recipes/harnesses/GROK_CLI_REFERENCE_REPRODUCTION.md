@@ -51,10 +51,41 @@ but they must be recorded as harness failures.
 
 ## Mask budget
 
-For deterministic subtitle-blur routes, calculate the combined mask area per
-frame. More than 20 percent of the frame, or any mask over the principal subject,
-is a route rejection—not a creative PASS. Select a cleaner shot/source or use
-precise cleanup instead.
+For deterministic subtitle-blur routes, calculate the **union of masked pixels**
+per frame; do not sum overlapping rectangles. More than 20 percent of the frame,
+or any mask over the principal subject, is a route rejection—not a creative PASS.
+Select a cleaner shot/source or use precise cleanup instead. A worker may not
+raise this threshold merely to make its own render pass.
+
+Global masks are forbidden across different shot classes. Each selected interval
+must have its own mask map. Moving source text requires time-bounded or keyframed
+masks; if a glyph escapes a fixed mask at any reviewed frame, trim the interval or
+reject the blur route.
+
+## Dense source and final gate
+
+Sparse midpoints do not prove a source interval or final video is clean. Before
+rendering, inspect the complete source at intervals no wider than 0.5 seconds and
+also inspect the exact first, last, and transition frames of every proposed shot.
+Repeat the same dense review after the final encode.
+
+The worker must emit these artifacts:
+
+```text
+source_dense_manifest
+transition_frame_manifest
+mask_map_per_shot
+mask_union_ratio_max
+full_playback_review
+dense_final_review
+independent_reviewer
+creative_acceptance
+```
+
+`person_free=true`, `text_removed=true`, or another worker-authored Boolean is not
+evidence without the corresponding frame manifest. Natural source recuts must
+keep time remapping between 0.8x and 1.35x; do not stretch a short safe pocket to
+hide the fact that surrounding frames are unsafe.
 
 ## Independent review
 
@@ -74,7 +105,10 @@ Classify failures as one or more of:
 - `provider-quality` — generated media fails despite correct routing;
 - `source-quality` — approved source cannot support the intended result.
 
-Only the independent reviewer may promote the reproduction result to PASS.
+Render success must leave `creative_acceptance=PENDING`. Only a reviewer distinct
+from the producing worker may promote the reproduction result to PASS after full
+playback and the dense final gate. Failed corrections remain evidence and must not
+overwrite an accepted baseline or an earlier failure record.
 
 Track tool capability and creative acceptance separately:
 

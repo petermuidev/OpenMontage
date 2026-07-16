@@ -18,10 +18,11 @@
   ],
   "source_contract": [
     "Use only owner-approved source video and record its URL and SHA-256",
-    "Inspect the complete source with CRV, one-second contact sheets, and exact boundary frames",
-    "Select only human-free intervals and recheck faces and reflections at both boundaries",
-    "Map each burned-in title and subtitle region per shot instead of assuming one global mask",
-    "Measure each proposed blur mask and reject the route when combined mask area exceeds 20 percent of the delivery frame",
+    "Inspect the complete source at intervals no wider than 0.5 seconds, plus exact first, last, and transition frames; one midpoint per shot is insufficient",
+    "Select only human-free intervals and record a frame manifest proving that people, faces, and reflections are absent throughout each interval",
+    "Map each burned-in title and subtitle region per shot; reusing one global mask across shot classes is forbidden",
+    "Track moving text with time-bounded or keyframed masks; if any glyph escapes a fixed mask, trim the shot or reject this route",
+    "Measure the union of masked pixels per frame without double-counting overlaps and reject the route when it exceeds 20 percent of the delivery frame",
     "Use licensed music and remove all original source audio"
   ],
   "creative_contract": [
@@ -29,16 +30,17 @@
     "Use narrow per-shot tracked blur masks over only the original title and subtitle regions",
     "Prefer excluding a shot or using precise cleanup over hiding a central subject with blur",
     "Add concise replacement subtitles on a readable editorial card inside mobile-safe margins",
-    "Build a smooth multi-shot sequence from approximately three-second scenes with short dissolves",
+    "Build a smooth multi-shot sequence from approximately three-second scenes with short dissolves and keep time remapping between 0.8x and 1.35x",
     "Limit copy to visible property facts and mood; do not invent facilities, price, availability, or performance claims",
     "Use vibe music only unless the requested recipe explicitly calls for narration"
   ],
   "qa_contract": [
     "Verify source_frame_crop is false and the full original 9:16 frame is visible",
-    "Review the first and last frames of every shot to ensure source text does not escape a moving mask",
-    "Record per-shot mask area ratios and reject any frame whose combined blur exceeds 20 percent or covers the principal subject",
+    "Review source and final frames at intervals no wider than 0.5 seconds, plus the exact first, last, and transition frames of every shot",
+    "Record the per-frame union mask ratio and reject any frame above 20 percent or any mask that covers the principal subject",
     "Reject any visible presenter, face, reflection, original title, or original subtitle",
-    "Run full-playback review plus CRV sampled-frame review after the final encode",
+    "Run full-playback review plus dense CRV review after the final encode; sparse midpoint sampling cannot satisfy this gate",
+    "Keep creative acceptance pending after render success; only a reviewer distinct from the producing worker may promote the candidate",
     "Require 1080x1920 H.264 yuv420p at 30 fps with AAC audio and no black segments",
     "Keep music near -18 to -14 LUFS with no clipping"
   ],
@@ -84,6 +86,7 @@
     "notes": [
       "Create a new dated project or output; never overwrite the accepted proof",
       "Rebuild the interval and per-shot mask map for every new source",
+      "Preserve failed corrections as evidence and never overwrite the accepted baseline",
       "The sibling narrated and cropped outputs are alternatives, not this full-frame recipe"
     ]
   },

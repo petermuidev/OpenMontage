@@ -127,8 +127,10 @@ becomes an accepted production pattern or baseline.
    before creative work.
 4. Copy the contract, not film-specific or operator-specific copy.
 5. Render a new dated candidate. Never overwrite a locked output.
-6. Run technical QA, CRV/sampled-frame review, full playback, and the recipe's
-   specific creative gates.
+6. Run technical QA, full playback, and the recipe's specific creative gates. For
+   source-cleanup routes, dense source and final review at intervals no wider than
+   0.5 seconds plus exact boundary/transition frames is mandatory; sparse
+   midpoints are not evidence.
 7. Record owner disposition and output SHA before promoting a candidate.
 
 Paid provider calls, publishing, and outreach are never implied by a recipe. The
