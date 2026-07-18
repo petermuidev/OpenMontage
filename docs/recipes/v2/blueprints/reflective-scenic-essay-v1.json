@@ -1,0 +1,95 @@
+{
+  "schema_version": "2.0",
+  "blueprint_id": "reflective-scenic-essay-v1",
+  "status": "accepted-baseline",
+  "kernel_id": "truthful-source-recut-v1",
+  "treatment_id": "motivational-narration-v1",
+  "profile_id": "vertical-editorial-v1",
+  "pipeline": "cinematic",
+  "reference_grammar": {
+    "retain": [
+      "immediate scenic opening under narration",
+      "one continuous reflective thesis",
+      "three-to-six-second source-led shots",
+      "small centered serif subtitles",
+      "simple cuts and cohesive visual mood",
+      "music subordinate to narration"
+    ],
+    "change": [
+      "use separately approved source media",
+      "write an original thesis and rhetorical progression",
+      "select a voice for the requested language and audience"
+    ],
+    "never_copy": [
+      "reference footage",
+      "reference transcript or distinctive phrases",
+      "reference music",
+      "creator voice identity, branding, or watermark"
+    ]
+  },
+  "accepted_example": {
+    "title": "The Quiet You Forgot",
+    "purpose": "organic engagement POC",
+    "language": "English",
+    "duration_seconds": 50,
+    "word_count": 129,
+    "narration": "Most days, quiet does not arrive as silence. It arrives as distance—from the screen, the schedule, and the version of you that keeps answering before you have listened. Then the road turns green. The water opens wider than your thoughts. A room holds the afternoon without asking anything from you. Nothing here solves the life you left behind. The same questions are waiting. The same choices still belong to you. But noise has a way of making every thought feel urgent, while stillness lets the important ones remain. Maybe that is why a new view can feel like a new beginning. Not because an island changes who you are, but because, for one unhurried moment, it gives you enough space to hear the person you were becoming all along.",
+    "voice": {
+      "provider": "edge-tts",
+      "voice_id": "en-US-ChristopherNeural",
+      "rate": "+0%",
+      "cost_usd": 0.0,
+      "owner_disposition": "accepted as part of the locked baseline"
+    },
+    "renderer": "ffmpeg",
+    "caption": {
+      "font": "Georgia",
+      "font_size_at_1080x1920": 44,
+      "placement": "center safe region",
+      "maximum_words": 10,
+      "maximum_lines": 2,
+      "boundary_rule": "sort cues and clip each end time to the next cue start"
+    },
+    "audio": {
+      "architecture": "single narrator plus atmospheric instrumental",
+      "integrated_lufs": -18.2,
+      "true_peak_dbfs": -2.1,
+      "music_gain": 0.1
+    },
+    "output": {
+      "path": "projects/claude-reflective-scenic-essay-poc/renders/the-quiet-you-forgot-v1.mp4",
+      "sha256": "632687f94c401818678595c8ec136e3f14d4d5b01fff45a4f3f0694d9b6c72a0",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "video_codec": "h264",
+      "pixel_format": "yuv420p",
+      "audio_codec": "aac",
+      "audio_sample_rate": 48000
+    }
+  },
+  "scene_contract": {
+    "count": [8, 12],
+    "typical_duration_seconds": [3, 6],
+    "source_modes": ["approved ocean motion", "approved garden motion", "approved sunset or pier motion", "other approved clean scenic motion"],
+    "rules": [
+      "map each sentence to a visible scene",
+      "cut on thought or motion changes rather than every subtitle cue",
+      "remove any interval whose people, source text, or watermark state changes during motion",
+      "do not add a title-only opening or commercial CTA"
+    ]
+  },
+  "worker_contract": {
+    "planning_worker": "Claude, Codex, or another bounded text agent",
+    "authority": "may draft the thesis, scene map, and caption plan only inside approved source and claim constraints",
+    "forbidden": ["inventing visible facts", "changing rights or claims", "choosing unapproved sources", "publishing", "spending", "promoting its own render"],
+    "composition_authority": "OpenMontage deterministic tools",
+    "acceptance_authority": "owner after dense QA and playback"
+  },
+  "rejection_learning": [
+    "Claude planning output invented an eastern shore, Chaweng, sand, palms, frangipani, and a longtail boat; all were rejected because the sources did not prove them",
+    "a previously human-free villa derivative was rejected because it retained inherited POC graphics",
+    "representative-frame cropping missed moving Chinese source headings; the contaminated villa intervals were removed",
+    "Edge subtitle cues overlapped by 50 milliseconds; the accepted pipeline normalizes boundaries before rendering"
+  ]
+}

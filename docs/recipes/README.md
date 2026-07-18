@@ -79,20 +79,20 @@ cleaned-frame I2V route instead.
 
 ## Catalog Summary
 
-As of 2026-07-14, the catalog contains **11 top-level recipes**:
+As of 2026-07-18, the catalog contains **12 top-level recipes**:
 
 | Class | Count | Meaning |
 |---|---:|---|
-| Accepted baselines | 3 | Locked proof outputs that control matching production |
+| Accepted baselines | 4 | Locked proof outputs that control matching production |
 | Accepted patterns | 3 | Reusable workflows with source-specific adaptation |
 | Proven candidates | 2 | Complete, awaiting an explicit owner lock |
 | Reference-only | 2 | Useful evidence, not a production route yet |
 | Superseded | 1 | Preserved history; route to its successor |
 
-That gives agents **6 production-routable recipes** today. There are also **11 named
+That gives agents **7 production-routable recipes** today. There are also **12 named
 internal deliverable blueprints**: ten inside the commercial showcase recipe and
-the accepted full-frame music-recaption variant. Internal variants are not counted
-again as top-level recipes.
+the accepted full-frame music-recaption variant, plus the accepted reflective scenic
+essay blueprint. Internal variants are not counted again as top-level recipes.
 
 ## Routing Table
 
@@ -103,6 +103,7 @@ again as top-level recipes.
 | Plan five-to-eight source-grounded angles, use Grok as a bounded shot worker, then assemble only accepted shots | `grok-multi-angle-shot-factory-v1` | proven candidate |
 | Preserve a full vertical source frame, blur burned-in text, recaption, and add vibe music | `fullframe-source-subtitle-blur-v1` | accepted pattern |
 | Short face-free, multi-shot narrated Samui reel | `samui-motivation-multishot-v1` | accepted baseline |
+| 45-55 second minimal scenic essay with original narration | `reflective-scenic-essay-v1` | accepted baseline |
 | Sound-off “choose 1-4” engagement post | `engagement-four-choice-v1` | accepted pattern |
 | One-film emotional recommendation | `thai-film-one-thesis-editorial-v1` | accepted baseline |
 | Ten films with useful three-sentence synopses | `thai-top10-three-sentence-synopsis-v1` | proven candidate |

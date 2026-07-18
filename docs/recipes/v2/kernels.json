@@ -11,7 +11,7 @@
       "required_capabilities": ["scene_detect", "frame_sampler", "video_compose", "audio_mixer"],
       "truth_risk": "low",
       "cost_class": "local",
-      "recipe_refs": ["tiktok-source-reframes-v1", "fullframe-source-subtitle-blur-v1"]
+      "recipe_refs": ["tiktok-source-reframes-v1", "fullframe-source-subtitle-blur-v1", "reflective-scenic-essay-v1"]
     },
     {
       "kernel_id": "extracted-frame-slideshow-v1",

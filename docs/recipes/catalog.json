@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-07-14",
+  "updated_at": "2026-07-18",
   "purpose": "Route agents to reproducible media patterns without mistaking a technical render for an accepted creative baseline.",
   "repository_roots": {
     "openmontage": "/Users/quanqiu/projects/social-automation/tools/OpenMontage",
@@ -18,6 +18,7 @@
     {"recipe_id": "grok-multi-angle-shot-factory-v1", "record": "patterns/grok-multi-angle-shot-factory-v1.json"},
     {"recipe_id": "fullframe-source-subtitle-blur-v1", "record": "patterns/fullframe-source-subtitle-blur-v1.json"},
     {"recipe_id": "samui-motivation-multishot-v1", "record": "patterns/samui-motivation-multishot-v1.json"},
+    {"recipe_id": "reflective-scenic-essay-v1", "record": "patterns/reflective-scenic-essay-v1.json"},
     {"recipe_id": "engagement-four-choice-v1", "record": "patterns/engagement-four-choice-v1.json"},
     {"recipe_id": "thai-film-one-thesis-editorial-v1", "record": "patterns/thai-film-one-thesis-editorial-v1.json"},
     {"recipe_id": "thai-top10-three-sentence-synopsis-v1", "record": "patterns/thai-top10-three-sentence-synopsis-v1.json"},

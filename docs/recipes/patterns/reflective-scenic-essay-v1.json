@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "recipe_id": "reflective-scenic-essay-v1",
+  "title": "Reflective scenic essay",
+  "status": "accepted-baseline",
+  "lane": "engagement",
+  "best_for": [
+    "45-55 second face-free scenic engagement videos",
+    "one original reflective thesis told over approved real destination footage",
+    "minimal narrated TikToks with restrained serif subtitles and no commercial CTA"
+  ],
+  "avoid_when": [
+    "approved footage cannot support eight meaningful motion intervals",
+    "moving burned text, people, faces, logos, or watermarks remain inside a selected interval",
+    "the requested story needs facts or locations that the visible footage cannot prove",
+    "the brief calls for kinetic typography, a sales offer, or a fast montage"
+  ],
+  "source_contract": [
+    "Use only owner-approved real motion and record provenance for every source pool",
+    "Inspect every selected interval densely; a clean representative frame does not prove that moving burned text or a person stays absent",
+    "Remove a contaminated interval rather than covering scenery with a large mask or inherited POC layout",
+    "Do not use reference footage, transcript, music, voice identity, branding, or watermark in the derivative",
+    "Generated scenery and source claims are excluded from this baseline"
+  ],
+  "creative_contract": [
+    "Write one original 125-155 word thesis with observation, development, deeper turn, and earned landing line",
+    "Map every spoken sentence to a visible supporting scene before narration generation",
+    "Use eight-to-twelve source-led motion intervals held mostly three-to-six seconds",
+    "Open on useful moving scenery within 0.3 seconds and use simple hard or audio-continuous cuts",
+    "Use small centered editorial serif subtitles with four-to-ten words per cue and at most two lines",
+    "Normalize subtitle boundaries so simultaneous cues never overlap",
+    "Use one warm, intimate narrator and restrained atmospheric music without a commercial CTA",
+    "Adapt wording, language, pacing, and source order to the new brief; do not copy the accepted script blindly"
+  ],
+  "qa_contract": [
+    "Run dense CRV across the complete output and inspect exact interval and subtitle boundaries",
+    "Reject any face, person, source heading, source subtitle, inherited overlay, watermark, blank frame, or competing caption system",
+    "Verify caption cues contain at most ten words, no overlaps, no black panel, and readable mobile-safe placement",
+    "Compare narration against the approved script and confirm every sentence has a supporting visual",
+    "Require 1080x1920 H.264 yuv420p at 30 fps with AAC 48 kHz audio and a 45-55 second duration",
+    "Target approximately -20 to -16 LUFS integrated loudness and true peak at or below -1.5 dBFS",
+    "Require full owner playback before accepting a new voice, story, or source adaptation"
+  ],
+  "hard_rejections": [
+    "copied reference language or media",
+    "generic slogan chain without one coherent thesis",
+    "unsupported location, facility, result, or commercial claim",
+    "identifiable unapproved person or face",
+    "moving burned source text that appears after a clean opening frame",
+    "inherited POC graphics or a second competing caption system",
+    "overlapping, oversized, panel-backed, or karaoke subtitles",
+    "fewer than eight meaningful motion intervals",
+    "music that competes with narration",
+    "technical render promoted without dense visual review and owner playback"
+  ],
+  "canonical_artifacts": [
+    {
+      "repo": "openmontage",
+      "path": "docs/recipes/patterns/reflective-scenic-essay-v1.json",
+      "role": "portable accepted recipe contract",
+      "tracked": true
+    },
+    {
+      "repo": "openmontage",
+      "path": "docs/recipes/v2/blueprints/reflective-scenic-essay-v1.json",
+      "role": "accepted production blueprint and script example",
+      "tracked": true
+    },
+    {
+      "repo": "openmontage",
+      "path": "docs/recipes/v2/audits/REFLECTIVE_SCENIC_ESSAY_2026-07-18.md",
+      "role": "source-cleanup, Claude-routing, correction, and owner-acceptance audit",
+      "tracked": true
+    },
+    {
+      "repo": "openmontage",
+      "path": "projects/claude-reflective-scenic-essay-poc/SHOWCASE.html",
+      "role": "local owner-review viewer",
+      "tracked": false
+    }
+  ],
+  "reproduce": {
+    "command": null,
+    "working_repo": "openmontage",
+    "paid_calls": false,
+    "notes": [
+      "Route through truthful-source-recut-v1 plus motivational-narration-v1 and vertical-editorial-v1",
+      "Use the tracked blueprint as a decision contract, not an immutable timeline",
+      "Create a new dated project and output; never overwrite the accepted proof",
+      "Inspect every selected interval densely before composition and again after final encode",
+      "Use Claude or another planning worker only inside the bounded contract; OpenMontage remains the composition and QA authority"
+    ]
+  },
+  "proof": {
+    "disposition": "Owner said 'not bad very well. lock it' and accepted the corrected scenic essay as a baseline on 2026-07-18",
+    "qa": "PASS: 50.0 seconds, 1080x1920 H.264 yuv420p at 30 fps, AAC 48 kHz, approximately -18.2 LUFS and -2.1 dBFS true peak; 16 non-overlapping caption cues with at most ten words; no people, source text, inherited overlay, or blank frame in final dense review",
+    "output_repo": "openmontage",
+    "output_path": "projects/claude-reflective-scenic-essay-poc/renders/the-quiet-you-forgot-v1.mp4",
+    "output_sha256": "632687f94c401818678595c8ec136e3f14d4d5b01fff45a4f3f0694d9b6c72a0"
+  }
+}
